@@ -1,0 +1,73 @@
+name: Camtasia
+description: 'Camtasia is a screen recording and video editing software by TechSmith that allows  users to create professional videos, tutorials, and presentations with built-in  editing tools, effects, and media assets.
+
+  '
+image: https://www.techsmith.com/camtasia-icon.png
+url: https://www.techsmith.com/camtasia.html
+created: '2024-01-15'
+modified: '2024-01-15'
+specificationVersion: '0.14'
+tags:
+- video editing
+- screen recording
+- tutorial creation
+- video production
+- e-learning
+apis:
+- name: Camtasia Asset Library API
+  description: API for accessing and managing media assets, templates, and libraries
+  image: https://www.techsmith.com/camtasia-assets-icon.png
+  humanURL: https://www.techsmith.com/camtasia.html
+  baseURL: https://api.techsmith.com/camtasia/v1
+  tags:
+  - assets
+  - templates
+  - media library
+  properties:
+  - type: Documentation
+    url: https://support.techsmith.com/hc/en-us/categories/camtasia-api
+  - type: OpenAPI
+    url: https://api.techsmith.com/camtasia/openapi.json
+  - type: Authentication
+    url: https://support.techsmith.com/hc/en-us/articles/camtasia-api-auth
+  contact:
+  - FN: TechSmith Support
+    email: support@techsmith.com
+    url: https://support.techsmith.com
+- name: Camtasia Project Management API
+  description: API for creating, managing, and exporting Camtasia projects programmatically
+  image: https://www.techsmith.com/camtasia-projects-icon.png
+  humanURL: https://www.techsmith.com/camtasia.html
+  baseURL: https://api.techsmith.com/camtasia/v1/projects
+  tags:
+  - projects
+  - automation
+  - video production
+  properties:
+  - type: Documentation
+    url: https://support.techsmith.com/hc/en-us/articles/project-api
+  - type: OpenAPI
+    url: https://api.techsmith.com/camtasia/projects/openapi.json
+  - type: SDK
+    url: https://github.com/techsmith/camtasia-sdk
+  contact:
+  - FN: TechSmith Support
+    email: support@techsmith.com
+    url: https://support.techsmith.com
+maintainers:
+- FN: TechSmith Corporation
+  email: api@techsmith.com
+  url: https://www.techsmith.com
+common:
+- type: Terms of Service
+  url: https://www.techsmith.com/terms.html
+- type: Privacy Policy
+  url: https://www.techsmith.com/privacy.html
+- type: Support
+  url: https://support.techsmith.com
+- type: Getting Started
+  url: https://www.techsmith.com/learn/camtasia/
+- type: Blog
+  url: https://www.techsmith.com/blog/category/camtasia/
+- type: Pricing
+  url: https://www.techsmith.com/store/camtasia
