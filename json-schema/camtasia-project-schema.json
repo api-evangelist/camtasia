@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.techsmith.com/schemas/camtasia/project.json",
+  "title": "Camtasia Project",
+  "description": "Represents a Camtasia video editing project, including canvas settings, timeline configuration, and production metadata.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the project"
+    },
+    "name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "in_progress",
+        "completed",
+        "archived"
+      ],
+      "description": "Current project status"
+    },
+    "resolution": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Canvas width in pixels"
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Canvas height in pixels"
+        }
+      },
+      "description": "Project canvas resolution"
+    },
+    "frameRate": {
+      "type": "number",
+      "minimum": 1,
+      "description": "Project frame rate in frames per second"
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total project duration in seconds"
+    },
+    "trackCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of timeline tracks"
+    },
+    "templateId": {
+      "type": "string",
+      "description": "ID of the template used to create this project"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the project was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the project was last modified"
+    }
+  },
+  "required": [
+    "id",
+    "name"
+  ]
+}

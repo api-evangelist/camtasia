@@ -1,0 +1,241 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "camtasia": "https://api.techsmith.com/schemas/camtasia/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Asset": {
+      "@id": "camtasia:Asset",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": "camtasia:assetType",
+        "format": "schema:encodingFormat",
+        "fileSize": {
+          "@id": "schema:contentSize",
+          "@type": "xsd:integer"
+        },
+        "duration": {
+          "@id": "schema:duration",
+          "@type": "xsd:decimal"
+        },
+        "width": {
+          "@id": "schema:width",
+          "@type": "xsd:integer"
+        },
+        "height": {
+          "@id": "schema:height",
+          "@type": "xsd:integer"
+        },
+        "thumbnailUrl": {
+          "@id": "schema:thumbnailUrl",
+          "@type": "@id"
+        },
+        "downloadUrl": {
+          "@id": "schema:contentUrl",
+          "@type": "@id"
+        },
+        "tags": "schema:keywords",
+        "libraryId": "camtasia:libraryId",
+        "categoryId": "camtasia:categoryId",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Project": {
+      "@id": "camtasia:Project",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "status": "camtasia:projectStatus",
+        "resolution": "camtasia:resolution",
+        "frameRate": {
+          "@id": "camtasia:frameRate",
+          "@type": "xsd:decimal"
+        },
+        "duration": {
+          "@id": "schema:duration",
+          "@type": "xsd:decimal"
+        },
+        "trackCount": {
+          "@id": "camtasia:trackCount",
+          "@type": "xsd:integer"
+        },
+        "templateId": "camtasia:templateId",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Template": {
+      "@id": "camtasia:Template",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "category": "schema:category",
+        "previewUrl": {
+          "@id": "schema:thumbnailUrl",
+          "@type": "@id"
+        },
+        "downloadUrl": {
+          "@id": "schema:contentUrl",
+          "@type": "@id"
+        },
+        "resolution": "camtasia:resolution",
+        "frameRate": {
+          "@id": "camtasia:frameRate",
+          "@type": "xsd:decimal"
+        },
+        "builtIn": {
+          "@id": "camtasia:builtIn",
+          "@type": "xsd:boolean"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Library": {
+      "@id": "camtasia:Library",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": "camtasia:libraryType",
+        "assetCount": {
+          "@id": "camtasia:assetCount",
+          "@type": "xsd:integer"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Track": {
+      "@id": "camtasia:Track",
+      "@context": {
+        "name": "schema:name",
+        "type": "camtasia:trackType",
+        "order": {
+          "@id": "schema:position",
+          "@type": "xsd:integer"
+        },
+        "visible": {
+          "@id": "camtasia:visible",
+          "@type": "xsd:boolean"
+        },
+        "locked": {
+          "@id": "camtasia:locked",
+          "@type": "xsd:boolean"
+        },
+        "muted": {
+          "@id": "camtasia:muted",
+          "@type": "xsd:boolean"
+        },
+        "opacity": {
+          "@id": "camtasia:opacity",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "Recording": {
+      "@id": "camtasia:Recording",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "format": "schema:encodingFormat",
+        "duration": {
+          "@id": "schema:duration",
+          "@type": "xsd:decimal"
+        },
+        "resolution": "camtasia:resolution",
+        "fileSize": {
+          "@id": "schema:contentSize",
+          "@type": "xsd:integer"
+        },
+        "hasWebcam": {
+          "@id": "camtasia:hasWebcam",
+          "@type": "xsd:boolean"
+        },
+        "hasAudio": {
+          "@id": "camtasia:hasAudio",
+          "@type": "xsd:boolean"
+        },
+        "hasCursorData": {
+          "@id": "camtasia:hasCursorData",
+          "@type": "xsd:boolean"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Production": {
+      "@id": "camtasia:Production",
+      "@context": {
+        "projectId": "camtasia:projectId",
+        "status": "camtasia:productionStatus",
+        "progress": {
+          "@id": "camtasia:progress",
+          "@type": "xsd:integer"
+        },
+        "format": "schema:encodingFormat",
+        "resolution": "camtasia:resolution",
+        "frameRate": {
+          "@id": "camtasia:frameRate",
+          "@type": "xsd:decimal"
+        },
+        "quality": "camtasia:quality",
+        "fileSize": {
+          "@id": "schema:contentSize",
+          "@type": "xsd:integer"
+        },
+        "downloadUrl": {
+          "@id": "schema:contentUrl",
+          "@type": "@id"
+        },
+        "startedAt": {
+          "@id": "camtasia:startedAt",
+          "@type": "xsd:dateTime"
+        },
+        "completedAt": {
+          "@id": "camtasia:completedAt",
+          "@type": "xsd:dateTime"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

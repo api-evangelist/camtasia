@@ -1,0 +1,1202 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Project Management API
+  description: >-
+    API for creating, managing, and exporting Camtasia projects
+    programmatically. Provides operations for project lifecycle management
+    including creating projects from templates, managing timeline tracks
+    and media, configuring production settings, and exporting finished
+    videos in various formats.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+externalDocs:
+  description: Camtasia Project API Documentation
+  url: https://support.techsmith.com/hc/en-us/articles/project-api
+servers:
+  - url: https://api.techsmith.com/camtasia/v1
+    description: TechSmith Camtasia API Production
+tags:
+  - name: Projects
+    description: Create and manage Camtasia projects
+  - name: Tracks
+    description: Manage timeline tracks within a project
+  - name: Media
+    description: Manage media items on project tracks
+  - name: Productions
+    description: Produce and export finished videos
+  - name: Recordings
+    description: Manage screen recordings
+security:
+  - bearerAuth: []
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List projects
+      description: >-
+        Retrieve a paginated list of the user's Camtasia projects.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/searchQuery'
+        - $ref: '#/components/parameters/pageOffset'
+        - $ref: '#/components/parameters/pageLimit'
+        - name: status
+          in: query
+          description: Filter by project status
+          schema:
+            type: string
+            enum:
+              - draft
+              - in_progress
+              - completed
+              - archived
+        - name: sort
+          in: query
+          description: Sort order for results
+          schema:
+            type: string
+            enum:
+              - name
+              - created
+              - modified
+            default: modified
+      responses:
+        '200':
+          description: Paginated list of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createProject
+      summary: Create a project
+      description: >-
+        Create a new Camtasia project, optionally based on a template.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get a project
+      description: >-
+        Retrieve detailed information about a specific project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProject
+      summary: Update a project
+      description: >-
+        Update metadata and settings for an existing project.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: Delete a project
+      description: >-
+        Delete a Camtasia project and its associated data.
+      tags:
+        - Projects
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '204':
+          description: Project deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /projects/{projectId}/tracks:
+    get:
+      operationId: listTracks
+      summary: List project tracks
+      description: >-
+        Retrieve all timeline tracks in a project.
+      tags:
+        - Tracks
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    post:
+      operationId: createTrack
+      summary: Create a track
+      description: >-
+        Add a new timeline track to the project.
+      tags:
+        - Tracks
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTrackRequest'
+      responses:
+        '201':
+          description: Track created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /projects/{projectId}/tracks/{trackId}:
+    get:
+      operationId: getTrack
+      summary: Get a track
+      description: >-
+        Retrieve details of a specific timeline track.
+      tags:
+        - Tracks
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+      responses:
+        '200':
+          description: Track details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+    put:
+      operationId: updateTrack
+      summary: Update a track
+      description: >-
+        Update properties of a timeline track.
+      tags:
+        - Tracks
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTrackRequest'
+      responses:
+        '200':
+          description: Track updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+    delete:
+      operationId: deleteTrack
+      summary: Delete a track
+      description: >-
+        Remove a timeline track and all its media items from the project.
+      tags:
+        - Tracks
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+      responses:
+        '204':
+          description: Track deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+  /projects/{projectId}/tracks/{trackId}/media:
+    get:
+      operationId: listTrackMedia
+      summary: List media on a track
+      description: >-
+        Retrieve all media items placed on a specific timeline track.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+      responses:
+        '200':
+          description: List of media items on the track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMediaListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+    post:
+      operationId: addMediaToTrack
+      summary: Add media to a track
+      description: >-
+        Place a media item on the timeline track at a specific position.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTrackMediaRequest'
+      responses:
+        '201':
+          description: Media added to track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMedia'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+  /projects/{projectId}/tracks/{trackId}/media/{mediaId}:
+    get:
+      operationId: getTrackMedia
+      summary: Get a media item on a track
+      description: >-
+        Retrieve details of a specific media item on a timeline track.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+        - $ref: '#/components/parameters/mediaId'
+      responses:
+        '200':
+          description: Track media details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMedia'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media item not found
+    put:
+      operationId: updateTrackMedia
+      summary: Update a media item on a track
+      description: >-
+        Update position, duration, or effects of a media item on the timeline.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+        - $ref: '#/components/parameters/mediaId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTrackMediaRequest'
+      responses:
+        '200':
+          description: Track media updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMedia'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media item not found
+    delete:
+      operationId: removeTrackMedia
+      summary: Remove media from a track
+      description: >-
+        Remove a media item from the timeline track.
+      tags:
+        - Media
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/trackId'
+        - $ref: '#/components/parameters/mediaId'
+      responses:
+        '204':
+          description: Media removed from track
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media item not found
+  /projects/{projectId}/productions:
+    get:
+      operationId: listProductions
+      summary: List productions
+      description: >-
+        Retrieve a list of production (export) jobs for a project.
+      tags:
+        - Productions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of productions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductionListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    post:
+      operationId: createProduction
+      summary: Start a production
+      description: >-
+        Start a new production (export) job to render the project into
+        a finished video file with the specified settings.
+      tags:
+        - Productions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProductionRequest'
+      responses:
+        '202':
+          description: Production job started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Production'
+        '400':
+          description: Invalid production settings
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /projects/{projectId}/productions/{productionId}:
+    get:
+      operationId: getProduction
+      summary: Get production status
+      description: >-
+        Retrieve the status and details of a specific production job.
+      tags:
+        - Productions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/productionId'
+      responses:
+        '200':
+          description: Production details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Production'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Production not found
+  /projects/{projectId}/productions/{productionId}/download:
+    get:
+      operationId: downloadProduction
+      summary: Download produced video
+      description: >-
+        Download the finished video file from a completed production job.
+      tags:
+        - Productions
+      parameters:
+        - $ref: '#/components/parameters/projectId'
+        - $ref: '#/components/parameters/productionId'
+      responses:
+        '200':
+          description: Produced video file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Production not found
+        '409':
+          description: Production not yet completed
+  /recordings:
+    get:
+      operationId: listRecordings
+      summary: List recordings
+      description: >-
+        Retrieve a list of screen recordings available for use in projects.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/pageOffset'
+        - $ref: '#/components/parameters/pageLimit'
+      responses:
+        '200':
+          description: List of recordings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordingListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: uploadRecording
+      summary: Upload a recording
+      description: >-
+        Upload a screen recording file for use in Camtasia projects.
+      tags:
+        - Recordings
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+                - name
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The recording file (.trec or video format)
+                name:
+                  type: string
+                  description: Display name for the recording
+                description:
+                  type: string
+                  description: Description of the recording
+      responses:
+        '201':
+          description: Recording uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '400':
+          description: Invalid file
+        '401':
+          description: Unauthorized
+  /recordings/{recordingId}:
+    get:
+      operationId: getRecording
+      summary: Get a recording
+      description: >-
+        Retrieve details of a specific screen recording.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Recording details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+    delete:
+      operationId: deleteRecording
+      summary: Delete a recording
+      description: >-
+        Delete a screen recording.
+      tags:
+        - Recordings
+      parameters:
+        - $ref: '#/components/parameters/recordingId'
+      responses:
+        '204':
+          description: Recording deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+    trackId:
+      name: trackId
+      in: path
+      required: true
+      description: Unique identifier for the timeline track
+      schema:
+        type: string
+    mediaId:
+      name: mediaId
+      in: path
+      required: true
+      description: Unique identifier for the media item on a track
+      schema:
+        type: string
+    productionId:
+      name: productionId
+      in: path
+      required: true
+      description: Unique identifier for the production job
+      schema:
+        type: string
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: Unique identifier for the recording
+      schema:
+        type: string
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        status:
+          type: string
+          enum:
+            - draft
+            - in_progress
+            - completed
+            - archived
+          description: Current project status
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+            height:
+              type: integer
+              description: Canvas height in pixels
+          description: Project canvas resolution
+        frameRate:
+          type: number
+          description: Project frame rate in frames per second
+        duration:
+          type: number
+          description: Total project duration in seconds
+        trackCount:
+          type: integer
+          description: Number of timeline tracks
+        templateId:
+          type: string
+          description: ID of the template used to create this project
+        createdAt:
+          type: string
+          format: date-time
+          description: When the project was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the project was last modified
+    ProjectListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total:
+          type: integer
+          description: Total number of projects
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
+    CreateProjectRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        templateId:
+          type: string
+          description: Template ID to base the project on
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+              default: 1920
+            height:
+              type: integer
+              description: Canvas height in pixels
+              default: 1080
+        frameRate:
+          type: number
+          description: Frame rate in FPS
+          default: 30
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated project name
+        description:
+          type: string
+          description: Updated project description
+        status:
+          type: string
+          enum:
+            - draft
+            - in_progress
+            - completed
+            - archived
+          description: Updated project status
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+            height:
+              type: integer
+              description: Canvas height in pixels
+        frameRate:
+          type: number
+          description: Updated frame rate
+    Track:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the track
+        name:
+          type: string
+          description: Track name
+        type:
+          type: string
+          enum:
+            - video
+            - audio
+            - annotation
+            - cursor
+          description: Track type
+        order:
+          type: integer
+          description: Track order in the timeline (0 is topmost)
+        visible:
+          type: boolean
+          description: Whether the track is visible
+        locked:
+          type: boolean
+          description: Whether the track is locked for editing
+        muted:
+          type: boolean
+          description: Whether the audio on this track is muted
+        opacity:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Track opacity (for video/annotation tracks)
+        mediaCount:
+          type: integer
+          description: Number of media items on this track
+    TrackListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    CreateTrackRequest:
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          description: Track name
+        type:
+          type: string
+          enum:
+            - video
+            - audio
+            - annotation
+            - cursor
+          description: Track type
+        order:
+          type: integer
+          description: Track order position
+    UpdateTrackRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated track name
+        order:
+          type: integer
+          description: Updated track order
+        visible:
+          type: boolean
+          description: Track visibility
+        locked:
+          type: boolean
+          description: Track lock state
+        muted:
+          type: boolean
+          description: Track mute state
+        opacity:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Track opacity
+    TrackMedia:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the media placement
+        assetId:
+          type: string
+          description: ID of the source asset
+        recordingId:
+          type: string
+          description: ID of the source recording (if applicable)
+        type:
+          type: string
+          enum:
+            - video
+            - audio
+            - image
+            - annotation
+            - callout
+            - cursor
+            - transition
+          description: Media type
+        startTime:
+          type: number
+          description: Start position on the timeline in seconds
+        duration:
+          type: number
+          description: Duration on the timeline in seconds
+        inPoint:
+          type: number
+          description: In-point within the source media in seconds
+        outPoint:
+          type: number
+          description: Out-point within the source media in seconds
+        effects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Effect'
+          description: Effects applied to this media item
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+              description: Horizontal position on canvas
+            y:
+              type: number
+              description: Vertical position on canvas
+          description: Position on the canvas (for visual media)
+        scale:
+          type: number
+          description: Scale factor (1.0 = original size)
+        rotation:
+          type: number
+          description: Rotation angle in degrees
+    TrackMediaListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackMedia'
+    AddTrackMediaRequest:
+      type: object
+      properties:
+        assetId:
+          type: string
+          description: ID of the asset to add
+        recordingId:
+          type: string
+          description: ID of the recording to add
+        startTime:
+          type: number
+          description: Start position on the timeline in seconds
+          default: 0
+        duration:
+          type: number
+          description: Duration on the timeline (defaults to source duration)
+        inPoint:
+          type: number
+          description: In-point within the source media
+        outPoint:
+          type: number
+          description: Out-point within the source media
+    UpdateTrackMediaRequest:
+      type: object
+      properties:
+        startTime:
+          type: number
+          description: Updated start position in seconds
+        duration:
+          type: number
+          description: Updated duration in seconds
+        inPoint:
+          type: number
+          description: Updated in-point
+        outPoint:
+          type: number
+          description: Updated out-point
+        effects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Effect'
+          description: Updated effects
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        scale:
+          type: number
+          description: Updated scale factor
+        rotation:
+          type: number
+          description: Updated rotation angle
+    Effect:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - zoom
+            - pan
+            - fade_in
+            - fade_out
+            - highlight
+            - blur
+            - spotlight
+            - color_adjustment
+            - speed
+            - green_screen
+          description: Effect type
+        startTime:
+          type: number
+          description: Effect start time relative to media item
+        duration:
+          type: number
+          description: Effect duration in seconds
+        parameters:
+          type: object
+          additionalProperties: true
+          description: Effect-specific parameters
+    Production:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the production job
+        projectId:
+          type: string
+          description: ID of the source project
+        status:
+          type: string
+          enum:
+            - queued
+            - processing
+            - completed
+            - failed
+            - cancelled
+          description: Production job status
+        progress:
+          type: integer
+          minimum: 0
+          maximum: 100
+          description: Production progress percentage
+        format:
+          type: string
+          enum:
+            - mp4
+            - wmv
+            - avi
+            - gif
+            - m4a
+          description: Output file format
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Output width in pixels
+            height:
+              type: integer
+              description: Output height in pixels
+        frameRate:
+          type: number
+          description: Output frame rate
+        quality:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - custom
+          description: Output quality preset
+        fileSize:
+          type: integer
+          description: Output file size in bytes (available when completed)
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the produced file (available when completed)
+        errorMessage:
+          type: string
+          description: Error message if production failed
+        startedAt:
+          type: string
+          format: date-time
+          description: When production started
+        completedAt:
+          type: string
+          format: date-time
+          description: When production completed
+        createdAt:
+          type: string
+          format: date-time
+          description: When the production job was created
+    ProductionListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Production'
+    CreateProductionRequest:
+      type: object
+      required:
+        - format
+      properties:
+        format:
+          type: string
+          enum:
+            - mp4
+            - wmv
+            - avi
+            - gif
+            - m4a
+          description: Output file format
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Output width in pixels
+            height:
+              type: integer
+              description: Output height in pixels
+        frameRate:
+          type: number
+          description: Output frame rate
+        quality:
+          type: string
+          enum:
+            - low
+            - medium
+            - high
+            - custom
+          default: high
+          description: Output quality preset
+        watermark:
+          type: boolean
+          default: false
+          description: Whether to include a watermark
+        smartPlayer:
+          type: boolean
+          default: false
+          description: Whether to include the TechSmith Smart Player
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the recording
+        name:
+          type: string
+          description: Recording name
+        description:
+          type: string
+          description: Recording description
+        format:
+          type: string
+          description: Recording file format (e.g., trec, mp4)
+        duration:
+          type: number
+          description: Recording duration in seconds
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Recording width in pixels
+            height:
+              type: integer
+              description: Recording height in pixels
+        fileSize:
+          type: integer
+          description: Recording file size in bytes
+        hasWebcam:
+          type: boolean
+          description: Whether the recording includes webcam footage
+        hasAudio:
+          type: boolean
+          description: Whether the recording includes audio
+        hasCursorData:
+          type: boolean
+          description: Whether the recording includes cursor tracking data
+        createdAt:
+          type: string
+          format: date-time
+          description: When the recording was created
+    RecordingListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recording'
+        total:
+          type: integer
+          description: Total number of recordings
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page

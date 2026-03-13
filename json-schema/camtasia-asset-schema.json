@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.techsmith.com/schemas/camtasia/asset.json",
+  "title": "Camtasia Asset",
+  "description": "Represents a media asset in the Camtasia asset library, including video clips, audio tracks, images, animations, effects, transitions, annotations, cursors, and themes.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the asset"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the asset"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the asset"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "video",
+        "audio",
+        "image",
+        "animation",
+        "effect",
+        "transition",
+        "annotation",
+        "cursor",
+        "theme"
+      ],
+      "description": "Type of media asset"
+    },
+    "format": {
+      "type": "string",
+      "description": "File format (e.g., mp4, mp3, png, gif)"
+    },
+    "fileSize": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "File size in bytes"
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Duration in seconds (for video and audio assets)"
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Width in pixels (for visual assets)"
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Height in pixels (for visual assets)"
+    },
+    "thumbnailUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the asset thumbnail image"
+    },
+    "downloadUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to download the asset file"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Tags associated with the asset"
+    },
+    "libraryId": {
+      "type": "string",
+      "description": "ID of the library containing the asset"
+    },
+    "categoryId": {
+      "type": "string",
+      "description": "ID of the category this asset belongs to"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the asset was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the asset was last modified"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type"
+  ]
+}
