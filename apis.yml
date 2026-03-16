@@ -1,83 +1,49 @@
+aid: camtasia
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/camtasia/refs/heads/main/apis.yml
 name: Camtasia
+tags:
+  - Video Editing
+  - Screen Recording
+  - Tutorial Creation
+  - E-Learning
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2024-01-15'
+modified: '2026-03-16'
+position: Consumer
 description: >-
   Camtasia is a screen recording and video editing software by TechSmith
   that allows users to create professional videos, tutorials, and
   presentations with built-in editing tools, effects, and media assets.
-image: https://www.techsmith.com/camtasia-icon.png
-url: https://www.techsmith.com/camtasia.html
-created: '2024-01-15'
-modified: '2026-03-04'
-specificationVersion: '0.14'
-tags:
-- video editing
-- screen recording
-- tutorial creation
-- video production
-- e-learning
 apis:
-- name: Camtasia Asset Library API
-  description: API for accessing and managing media assets, templates, and libraries
-  image: https://www.techsmith.com/camtasia-assets-icon.png
-  humanURL: https://www.techsmith.com/camtasia.html
-  baseURL: https://api.techsmith.com/camtasia/v1
-  tags:
-  - assets
-  - templates
-  - media library
-  properties:
-  - type: Documentation
-    url: https://support.techsmith.com/hc/en-us/categories/camtasia-api
-  - type: OpenAPI
-    url: https://api.techsmith.com/camtasia/openapi.json
-  - type: Authentication
-    url: https://support.techsmith.com/hc/en-us/articles/camtasia-api-auth
-  - type: OpenAPI
-    url: openapi/camtasia-asset-library-openapi.yml
-  contact:
-  - FN: TechSmith Support
-    email: support@techsmith.com
-    url: https://support.techsmith.com
-- name: Camtasia Project Management API
-  description: API for creating, managing, and exporting Camtasia projects programmatically
-  image: https://www.techsmith.com/camtasia-projects-icon.png
-  humanURL: https://www.techsmith.com/camtasia.html
-  baseURL: https://api.techsmith.com/camtasia/v1/projects
-  tags:
-  - projects
-  - automation
-  - video production
-  properties:
-  - type: Documentation
-    url: https://support.techsmith.com/hc/en-us/articles/project-api
-  - type: OpenAPI
-    url: https://api.techsmith.com/camtasia/projects/openapi.json
-  - type: SDK
-    url: https://github.com/techsmith/camtasia-sdk
-  - type: OpenAPI
-    url: openapi/camtasia-project-management-openapi.yml
-  contact:
-  - FN: TechSmith Support
-    email: support@techsmith.com
-    url: https://support.techsmith.com
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - aid: camtasia:camtasia
+    name: Camtasia
+    tags:
+      - Video Editing
+      - Screen Recording
+    humanURL: https://www.techsmith.com/camtasia.html
+    properties:
+      - url: https://www.techsmith.com/camtasia.html
+        type: Documentation
+    description: >-
+      Camtasia is a screen recording and video editing software for creating
+      professional videos, tutorials, and presentations.
 common:
-- type: Terms of Service
-  url: https://www.techsmith.com/terms.html
-- type: Privacy Policy
-  url: https://www.techsmith.com/privacy.html
-- type: Support
-  url: https://support.techsmith.com
-- type: Getting Started
-  url: https://www.techsmith.com/learn/camtasia/
-- type: Blog
-  url: https://www.techsmith.com/blog/category/camtasia/
-- type: Pricing
-  url: https://www.techsmith.com/store/camtasia
-- type: JSON-LD
-  url: json-ld/camtasia-context.jsonld
-- type: JSONSchema
-  url: json-schema/camtasia-asset-schema.json
-- type: JSONSchema
-  url: json-schema/camtasia-project-schema.json
+  - type: Website
+    url: https://www.techsmith.com/camtasia.html
+  - type: Getting Started
+    url: https://www.techsmith.com/learn/camtasia/
+  - type: Blog
+    url: https://www.techsmith.com/blog/category/camtasia/
+  - type: Support
+    url: https://support.techsmith.com
+  - type: Terms of Service
+    url: https://www.techsmith.com/terms.html
+  - type: Privacy Policy
+    url: https://www.techsmith.com/privacy.html
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+specificationVersion: '0.19'
