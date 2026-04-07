@@ -35,7 +35,7 @@ paths:
   /assets:
     get:
       operationId: listAssets
-      summary: List assets
+      summary: Camtasia List assets
       description: >-
         Retrieve a paginated list of available media assets, optionally
         filtered by type, category, or search query.
@@ -61,7 +61,7 @@ paths:
           description: Unauthorized
     post:
       operationId: uploadAsset
-      summary: Upload an asset
+      summary: Camtasia Upload an asset
       description: >-
         Upload a new media asset to the user's personal library.
       tags:
@@ -88,7 +88,7 @@ paths:
   /assets/{assetId}:
     get:
       operationId: getAsset
-      summary: Get an asset
+      summary: Camtasia Get an asset
       description: >-
         Retrieve detailed information about a specific asset by its ID.
       tags:
@@ -108,7 +108,7 @@ paths:
           description: Asset not found
     put:
       operationId: updateAsset
-      summary: Update an asset
+      summary: Camtasia Update an asset
       description: >-
         Update metadata for an existing asset owned by the user.
       tags:
@@ -136,7 +136,7 @@ paths:
           description: Asset not found
     delete:
       operationId: deleteAsset
-      summary: Delete an asset
+      summary: Camtasia Delete an asset
       description: >-
         Delete an asset from the user's personal library.
       tags:
@@ -153,7 +153,7 @@ paths:
   /assets/{assetId}/download:
     get:
       operationId: downloadAsset
-      summary: Download an asset file
+      summary: Camtasia Download an asset file
       description: >-
         Download the binary file for a specific asset.
       tags:
@@ -175,7 +175,7 @@ paths:
   /assets/{assetId}/preview:
     get:
       operationId: getAssetPreview
-      summary: Get asset preview
+      summary: Camtasia Get asset preview
       description: >-
         Retrieve a thumbnail or preview image for a specific asset.
       tags:
@@ -207,7 +207,7 @@ paths:
   /templates:
     get:
       operationId: listTemplates
-      summary: List templates
+      summary: Camtasia List templates
       description: >-
         Retrieve a list of available project templates including both
         built-in and user-created templates.
@@ -229,7 +229,7 @@ paths:
   /templates/{templateId}:
     get:
       operationId: getTemplate
-      summary: Get a template
+      summary: Camtasia Get a template
       description: >-
         Retrieve detailed information about a specific template.
       tags:
@@ -250,7 +250,7 @@ paths:
   /templates/{templateId}/download:
     get:
       operationId: downloadTemplate
-      summary: Download a template
+      summary: Camtasia Download a template
       description: >-
         Download a template package file.
       tags:
@@ -272,7 +272,7 @@ paths:
   /libraries:
     get:
       operationId: listLibraries
-      summary: List libraries
+      summary: Camtasia List libraries
       description: >-
         Retrieve a list of asset libraries accessible to the user,
         including personal, shared, and TechSmith-provided libraries.
@@ -290,7 +290,7 @@ paths:
   /libraries/{libraryId}:
     get:
       operationId: getLibrary
-      summary: Get a library
+      summary: Camtasia Get a library
       description: >-
         Retrieve details of a specific asset library.
       tags:
@@ -311,7 +311,7 @@ paths:
   /libraries/{libraryId}/assets:
     get:
       operationId: listLibraryAssets
-      summary: List assets in a library
+      summary: Camtasia List assets in a library
       description: >-
         Retrieve a paginated list of assets within a specific library.
       tags:
@@ -336,7 +336,7 @@ paths:
   /categories:
     get:
       operationId: listCategories
-      summary: List asset categories
+      summary: Camtasia List asset categories
       description: >-
         Retrieve the hierarchy of asset categories used to organize
         media assets in the library.
@@ -354,7 +354,7 @@ paths:
   /categories/{categoryId}:
     get:
       operationId: getCategory
-      summary: Get a category
+      summary: Camtasia Get a category
       description: >-
         Retrieve details of a specific asset category.
       tags:

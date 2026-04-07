@@ -36,7 +36,7 @@ paths:
   /projects:
     get:
       operationId: listProjects
-      summary: List projects
+      summary: Camtasia List projects
       description: >-
         Retrieve a paginated list of the user's Camtasia projects.
       tags:
@@ -76,7 +76,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createProject
-      summary: Create a project
+      summary: Camtasia Create a project
       description: >-
         Create a new Camtasia project, optionally based on a template.
       tags:
@@ -101,7 +101,7 @@ paths:
   /projects/{projectId}:
     get:
       operationId: getProject
-      summary: Get a project
+      summary: Camtasia Get a project
       description: >-
         Retrieve detailed information about a specific project.
       tags:
@@ -121,7 +121,7 @@ paths:
           description: Project not found
     put:
       operationId: updateProject
-      summary: Update a project
+      summary: Camtasia Update a project
       description: >-
         Update metadata and settings for an existing project.
       tags:
@@ -149,7 +149,7 @@ paths:
           description: Project not found
     delete:
       operationId: deleteProject
-      summary: Delete a project
+      summary: Camtasia Delete a project
       description: >-
         Delete a Camtasia project and its associated data.
       tags:
@@ -166,7 +166,7 @@ paths:
   /projects/{projectId}/tracks:
     get:
       operationId: listTracks
-      summary: List project tracks
+      summary: Camtasia List project tracks
       description: >-
         Retrieve all timeline tracks in a project.
       tags:
@@ -186,7 +186,7 @@ paths:
           description: Project not found
     post:
       operationId: createTrack
-      summary: Create a track
+      summary: Camtasia Create a track
       description: >-
         Add a new timeline track to the project.
       tags:
@@ -215,7 +215,7 @@ paths:
   /projects/{projectId}/tracks/{trackId}:
     get:
       operationId: getTrack
-      summary: Get a track
+      summary: Camtasia Get a track
       description: >-
         Retrieve details of a specific timeline track.
       tags:
@@ -236,7 +236,7 @@ paths:
           description: Track not found
     put:
       operationId: updateTrack
-      summary: Update a track
+      summary: Camtasia Update a track
       description: >-
         Update properties of a timeline track.
       tags:
@@ -265,7 +265,7 @@ paths:
           description: Track not found
     delete:
       operationId: deleteTrack
-      summary: Delete a track
+      summary: Camtasia Delete a track
       description: >-
         Remove a timeline track and all its media items from the project.
       tags:
@@ -283,7 +283,7 @@ paths:
   /projects/{projectId}/tracks/{trackId}/media:
     get:
       operationId: listTrackMedia
-      summary: List media on a track
+      summary: Camtasia List media on a track
       description: >-
         Retrieve all media items placed on a specific timeline track.
       tags:
@@ -304,7 +304,7 @@ paths:
           description: Track not found
     post:
       operationId: addMediaToTrack
-      summary: Add media to a track
+      summary: Camtasia Add media to a track
       description: >-
         Place a media item on the timeline track at a specific position.
       tags:
@@ -334,7 +334,7 @@ paths:
   /projects/{projectId}/tracks/{trackId}/media/{mediaId}:
     get:
       operationId: getTrackMedia
-      summary: Get a media item on a track
+      summary: Camtasia Get a media item on a track
       description: >-
         Retrieve details of a specific media item on a timeline track.
       tags:
@@ -356,7 +356,7 @@ paths:
           description: Media item not found
     put:
       operationId: updateTrackMedia
-      summary: Update a media item on a track
+      summary: Camtasia Update a media item on a track
       description: >-
         Update position, duration, or effects of a media item on the timeline.
       tags:
@@ -386,7 +386,7 @@ paths:
           description: Media item not found
     delete:
       operationId: removeTrackMedia
-      summary: Remove media from a track
+      summary: Camtasia Remove media from a track
       description: >-
         Remove a media item from the timeline track.
       tags:
@@ -405,7 +405,7 @@ paths:
   /projects/{projectId}/productions:
     get:
       operationId: listProductions
-      summary: List productions
+      summary: Camtasia List productions
       description: >-
         Retrieve a list of production (export) jobs for a project.
       tags:
@@ -425,7 +425,7 @@ paths:
           description: Project not found
     post:
       operationId: createProduction
-      summary: Start a production
+      summary: Camtasia Start a production
       description: >-
         Start a new production (export) job to render the project into
         a finished video file with the specified settings.
@@ -455,7 +455,7 @@ paths:
   /projects/{projectId}/productions/{productionId}:
     get:
       operationId: getProduction
-      summary: Get production status
+      summary: Camtasia Get production status
       description: >-
         Retrieve the status and details of a specific production job.
       tags:
@@ -477,7 +477,7 @@ paths:
   /projects/{projectId}/productions/{productionId}/download:
     get:
       operationId: downloadProduction
-      summary: Download produced video
+      summary: Camtasia Download produced video
       description: >-
         Download the finished video file from a completed production job.
       tags:
@@ -502,7 +502,7 @@ paths:
   /recordings:
     get:
       operationId: listRecordings
-      summary: List recordings
+      summary: Camtasia List recordings
       description: >-
         Retrieve a list of screen recordings available for use in projects.
       tags:
@@ -521,7 +521,7 @@ paths:
           description: Unauthorized
     post:
       operationId: uploadRecording
-      summary: Upload a recording
+      summary: Camtasia Upload a recording
       description: >-
         Upload a screen recording file for use in Camtasia projects.
       tags:
@@ -560,7 +560,7 @@ paths:
   /recordings/{recordingId}:
     get:
       operationId: getRecording
-      summary: Get a recording
+      summary: Camtasia Get a recording
       description: >-
         Retrieve details of a specific screen recording.
       tags:
@@ -580,7 +580,7 @@ paths:
           description: Recording not found
     delete:
       operationId: deleteRecording
-      summary: Delete a recording
+      summary: Camtasia Delete a recording
       description: >-
         Delete a screen recording.
       tags:
