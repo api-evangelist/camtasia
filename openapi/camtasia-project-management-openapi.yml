@@ -20,16 +20,16 @@ servers:
   - url: https://api.techsmith.com/camtasia/v1
     description: TechSmith Camtasia API Production
 tags:
-  - name: Projects
-    description: Create and manage Camtasia projects
-  - name: Tracks
-    description: Manage timeline tracks within a project
   - name: Media
     description: Manage media items on project tracks
   - name: Productions
     description: Produce and export finished videos
+  - name: Projects
+    description: Create and manage Camtasia projects
   - name: Recordings
     description: Manage screen recordings
+  - name: Tracks
+    description: Manage timeline tracks within a project
 security:
   - bearerAuth: []
 paths:

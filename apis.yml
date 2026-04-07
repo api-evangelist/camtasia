@@ -3,10 +3,10 @@ url: >-
   https://raw.githubusercontent.com/api-evangelist/camtasia/refs/heads/main/apis.yml
 name: Camtasia
 tags:
-  - Video Editing
+  - E-Learning
   - Screen Recording
   - Tutorial Creation
-  - E-Learning
+  - Video Editing
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
@@ -21,8 +21,8 @@ apis:
   - aid: camtasia:camtasia
     name: Camtasia
     tags:
-      - Video Editing
       - Screen Recording
+      - Video Editing
     humanURL: https://www.techsmith.com/camtasia.html
     properties:
       - url: https://www.techsmith.com/camtasia.html

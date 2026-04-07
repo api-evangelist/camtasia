@@ -21,14 +21,14 @@ servers:
 tags:
   - name: Assets
     description: Browse and manage media assets
-  - name: Templates
-    description: Manage video project templates
-  - name: Libraries
-    description: Manage asset libraries and collections
   - name: Categories
     description: Browse asset categories
   - name: Downloads
     description: Download asset files
+  - name: Libraries
+    description: Manage asset libraries and collections
+  - name: Templates
+    description: Manage video project templates
 security:
   - bearerAuth: []
 paths:
