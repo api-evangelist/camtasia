@@ -1,0 +1,13 @@
+{
+  "repo": "camtasia",
+  "feeds": [
+    {
+      "source": "https://www.techsmith.com/blog/category/camtasia/",
+      "feed_url": "https://www.techsmith.com/feed/",
+      "saved": 10,
+      "title": "TechSmith"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:25:15Z"
+}
