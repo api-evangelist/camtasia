@@ -84,6 +84,40 @@ common:
     url: https://www.techsmith.com/privacy.html
   - type: JSON-LD
     url: json-ld/camtasia-context.jsonld
+  - type: Integrations
+    url: https://www.techsmith.com/integrations/
+integrations:
+  - name: Camtasia Icon Logo Color
+  - name: Camtasia Audiate Icon Logo Color
+  - name: Snagit Icon Logo Color
+  - name: Screencast Icon Logo Color
+  - name: Assets for Camtasia Icon Logo Color
+  - name: AI Avatar Generation
+  - name: AI Script Generation
+  - name: AI Voice Generation
+  - name: Remove Background Noise
+  - name: Transcribe Audio To Text
+  - name: Video Background Remover
+  - name: Video Translation
+  - name: TechSmith Webinars for Camtasia
+  - name: Help Center
+  - name: Trust Portal
+  - name: Research
+  - name: Compare
+  - name: Tools
+  - name: Zoom
+  - name: Youtube
+  - name: Powerpoint
+  - name: Slack
+  - name: Google drive
+  - name: Dropbox
+  - name: Keynote
+  - name: Outlook
+  - name: Microsoft word
+  - name: Teams
+  - name: Microsoft OneDrive
+  - name: Microsoft sharepoint
+  - name: Apple pages
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
