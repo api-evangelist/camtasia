@@ -47,7 +47,7 @@ apis:
         url: https://github.com/TechSmith/screencast-public-api-docs/blob/main/sections/oembed.md
       - type: Repository
         url: https://github.com/TechSmith/screencast-public-api-docs
-      - type: JSON-LD
+      - type: JSONLD
         url: json-ld/camtasia-context.jsonld
   - aid: camtasia:camtasia-screen-recorder-sdk
     name: Camtasia Screen Recorder SDK
@@ -82,7 +82,7 @@ common:
     url: https://www.techsmith.com/terms.html
   - type: PrivacyPolicy
     url: https://www.techsmith.com/privacy.html
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/camtasia-context.jsonld
   - type: Integrations
     url: https://www.techsmith.com/integrations/
