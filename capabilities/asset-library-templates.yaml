@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Camtasia Asset Library API — Templates
+  description: 'Camtasia Asset Library API — Templates. 2 operations. Lead operation: Camtasia List templates. Self-contained
+    Naftiko capability covering one Camtasia business surface.'
+  tags:
+  - Camtasia
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAMTASIA_API_KEY: CAMTASIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: asset-library-templates
+    baseUri: https://api.techsmith.com/camtasia/v1
+    description: Camtasia Asset Library API — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: templates
+      path: /templates
+      operations:
+      - name: listtemplates
+        method: GET
+        description: Camtasia List templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: templates-templateId
+      path: /templates/{templateId}
+      operations:
+      - name: gettemplate
+        method: GET
+        description: Camtasia Get a template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CAMTASIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: asset-library-templates-rest
+    port: 8080
+    description: REST adapter for Camtasia Asset Library API — Templates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/templates
+      name: templates
+      description: REST surface for templates.
+      operations:
+      - method: GET
+        name: listtemplates
+        description: Camtasia List templates
+        call: asset-library-templates.listtemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/templates/{templateid}
+      name: templates-templateid
+      description: REST surface for templates-templateId.
+      operations:
+      - method: GET
+        name: gettemplate
+        description: Camtasia Get a template
+        call: asset-library-templates.gettemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: asset-library-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Camtasia Asset Library API — Templates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: camtasia-list-templates
+      description: Camtasia List templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-templates.listtemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-get-template
+      description: Camtasia Get a template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-templates.gettemplate
+      outputParameters:
+      - type: object
+        mapping: $.

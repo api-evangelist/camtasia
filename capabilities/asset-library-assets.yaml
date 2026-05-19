@@ -1,0 +1,238 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Camtasia Asset Library API — Assets
+  description: 'Camtasia Asset Library API — Assets. 6 operations. Lead operation: Camtasia List assets. Self-contained Naftiko
+    capability covering one Camtasia business surface.'
+  tags:
+  - Camtasia
+  - Assets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAMTASIA_API_KEY: CAMTASIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: asset-library-assets
+    baseUri: https://api.techsmith.com/camtasia/v1
+    description: Camtasia Asset Library API — Assets business capability. Self-contained, no shared references.
+    resources:
+    - name: assets
+      path: /assets
+      operations:
+      - name: listassets
+        method: GET
+        description: Camtasia List assets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: uploadasset
+        method: POST
+        description: Camtasia Upload an asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: assets-assetId
+      path: /assets/{assetId}
+      operations:
+      - name: getasset
+        method: GET
+        description: Camtasia Get an asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateasset
+        method: PUT
+        description: Camtasia Update an asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteasset
+        method: DELETE
+        description: Camtasia Delete an asset
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: assets-assetId-preview
+      path: /assets/{assetId}/preview
+      operations:
+      - name: getassetpreview
+        method: GET
+        description: Camtasia Get asset preview
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: size
+          in: query
+          type: string
+          description: Preview size
+    authentication:
+      type: bearer
+      token: '{{env.CAMTASIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: asset-library-assets-rest
+    port: 8080
+    description: REST adapter for Camtasia Asset Library API — Assets. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/assets
+      name: assets
+      description: REST surface for assets.
+      operations:
+      - method: GET
+        name: listassets
+        description: Camtasia List assets
+        call: asset-library-assets.listassets
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploadasset
+        description: Camtasia Upload an asset
+        call: asset-library-assets.uploadasset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/assets/{assetid}
+      name: assets-assetid
+      description: REST surface for assets-assetId.
+      operations:
+      - method: GET
+        name: getasset
+        description: Camtasia Get an asset
+        call: asset-library-assets.getasset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateasset
+        description: Camtasia Update an asset
+        call: asset-library-assets.updateasset
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteasset
+        description: Camtasia Delete an asset
+        call: asset-library-assets.deleteasset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/assets/{assetid}/preview
+      name: assets-assetid-preview
+      description: REST surface for assets-assetId-preview.
+      operations:
+      - method: GET
+        name: getassetpreview
+        description: Camtasia Get asset preview
+        call: asset-library-assets.getassetpreview
+        with:
+          size: rest.size
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: asset-library-assets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Camtasia Asset Library API — Assets. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: camtasia-list-assets
+      description: Camtasia List assets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-assets.listassets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-upload-asset
+      description: Camtasia Upload an asset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: asset-library-assets.uploadasset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-get-asset
+      description: Camtasia Get an asset
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-assets.getasset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-update-asset
+      description: Camtasia Update an asset
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: asset-library-assets.updateasset
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-delete-asset
+      description: Camtasia Delete an asset
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: asset-library-assets.deleteasset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-get-asset-preview
+      description: Camtasia Get asset preview
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-assets.getassetpreview
+      with:
+        size: tools.size
+      outputParameters:
+      - type: object
+        mapping: $.

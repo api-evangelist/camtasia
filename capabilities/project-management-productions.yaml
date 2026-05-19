@@ -1,0 +1,169 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Camtasia Project Management API — Productions
+  description: 'Camtasia Project Management API — Productions. 4 operations. Lead operation: Camtasia List productions. Self-contained
+    Naftiko capability covering one Camtasia business surface.'
+  tags:
+  - Camtasia
+  - Productions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAMTASIA_API_KEY: CAMTASIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: project-management-productions
+    baseUri: https://api.techsmith.com/camtasia/v1
+    description: Camtasia Project Management API — Productions business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-productions
+      path: /projects/{projectId}/productions
+      operations:
+      - name: listproductions
+        method: GET
+        description: Camtasia List productions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproduction
+        method: POST
+        description: Camtasia Start a production
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-productions-productionId
+      path: /projects/{projectId}/productions/{productionId}
+      operations:
+      - name: getproduction
+        method: GET
+        description: Camtasia Get production status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: projects-projectId-productions-productionId-download
+      path: /projects/{projectId}/productions/{productionId}/download
+      operations:
+      - name: downloadproduction
+        method: GET
+        description: Camtasia Download produced video
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CAMTASIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: project-management-productions-rest
+    port: 8080
+    description: REST adapter for Camtasia Project Management API — Productions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/productions
+      name: projects-projectid-productions
+      description: REST surface for projects-projectId-productions.
+      operations:
+      - method: GET
+        name: listproductions
+        description: Camtasia List productions
+        call: project-management-productions.listproductions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproduction
+        description: Camtasia Start a production
+        call: project-management-productions.createproduction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/productions/{productionid}
+      name: projects-projectid-productions-productionid
+      description: REST surface for projects-projectId-productions-productionId.
+      operations:
+      - method: GET
+        name: getproduction
+        description: Camtasia Get production status
+        call: project-management-productions.getproduction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/productions/{productionid}/download
+      name: projects-projectid-productions-productionid-download
+      description: REST surface for projects-projectId-productions-productionId-download.
+      operations:
+      - method: GET
+        name: downloadproduction
+        description: Camtasia Download produced video
+        call: project-management-productions.downloadproduction
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: project-management-productions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Camtasia Project Management API — Productions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: camtasia-list-productions
+      description: Camtasia List productions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-productions.listproductions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-start-production
+      description: Camtasia Start a production
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: project-management-productions.createproduction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-get-production-status
+      description: Camtasia Get production status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-productions.getproduction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-download-produced-video
+      description: Camtasia Download produced video
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-productions.downloadproduction
+      outputParameters:
+      - type: object
+        mapping: $.

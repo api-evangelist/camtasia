@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Camtasia Asset Library API — Downloads
+  description: 'Camtasia Asset Library API — Downloads. 2 operations. Lead operation: Camtasia Download an asset file. Self-contained
+    Naftiko capability covering one Camtasia business surface.'
+  tags:
+  - Camtasia
+  - Downloads
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAMTASIA_API_KEY: CAMTASIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: asset-library-downloads
+    baseUri: https://api.techsmith.com/camtasia/v1
+    description: Camtasia Asset Library API — Downloads business capability. Self-contained, no shared references.
+    resources:
+    - name: assets-assetId-download
+      path: /assets/{assetId}/download
+      operations:
+      - name: downloadasset
+        method: GET
+        description: Camtasia Download an asset file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: templates-templateId-download
+      path: /templates/{templateId}/download
+      operations:
+      - name: downloadtemplate
+        method: GET
+        description: Camtasia Download a template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CAMTASIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: asset-library-downloads-rest
+    port: 8080
+    description: REST adapter for Camtasia Asset Library API — Downloads. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/assets/{assetid}/download
+      name: assets-assetid-download
+      description: REST surface for assets-assetId-download.
+      operations:
+      - method: GET
+        name: downloadasset
+        description: Camtasia Download an asset file
+        call: asset-library-downloads.downloadasset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/templates/{templateid}/download
+      name: templates-templateid-download
+      description: REST surface for templates-templateId-download.
+      operations:
+      - method: GET
+        name: downloadtemplate
+        description: Camtasia Download a template
+        call: asset-library-downloads.downloadtemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: asset-library-downloads-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Camtasia Asset Library API — Downloads. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: camtasia-download-asset-file
+      description: Camtasia Download an asset file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-downloads.downloadasset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-download-template
+      description: Camtasia Download a template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: asset-library-downloads.downloadtemplate
+      outputParameters:
+      - type: object
+        mapping: $.

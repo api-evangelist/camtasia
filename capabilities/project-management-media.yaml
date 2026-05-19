@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Camtasia Project Management API — Media
+  description: 'Camtasia Project Management API — Media. 5 operations. Lead operation: Camtasia List media on a track. Self-contained
+    Naftiko capability covering one Camtasia business surface.'
+  tags:
+  - Camtasia
+  - Media
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAMTASIA_API_KEY: CAMTASIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: project-management-media
+    baseUri: https://api.techsmith.com/camtasia/v1
+    description: Camtasia Project Management API — Media business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-tracks-trackId-media
+      path: /projects/{projectId}/tracks/{trackId}/media
+      operations:
+      - name: listtrackmedia
+        method: GET
+        description: Camtasia List media on a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addmediatotrack
+        method: POST
+        description: Camtasia Add media to a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-tracks-trackId-media-mediaId
+      path: /projects/{projectId}/tracks/{trackId}/media/{mediaId}
+      operations:
+      - name: gettrackmedia
+        method: GET
+        description: Camtasia Get a media item on a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatetrackmedia
+        method: PUT
+        description: Camtasia Update a media item on a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: removetrackmedia
+        method: DELETE
+        description: Camtasia Remove media from a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CAMTASIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: project-management-media-rest
+    port: 8080
+    description: REST adapter for Camtasia Project Management API — Media. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/tracks/{trackid}/media
+      name: projects-projectid-tracks-trackid-media
+      description: REST surface for projects-projectId-tracks-trackId-media.
+      operations:
+      - method: GET
+        name: listtrackmedia
+        description: Camtasia List media on a track
+        call: project-management-media.listtrackmedia
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addmediatotrack
+        description: Camtasia Add media to a track
+        call: project-management-media.addmediatotrack
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/tracks/{trackid}/media/{mediaid}
+      name: projects-projectid-tracks-trackid-media-mediaid
+      description: REST surface for projects-projectId-tracks-trackId-media-mediaId.
+      operations:
+      - method: GET
+        name: gettrackmedia
+        description: Camtasia Get a media item on a track
+        call: project-management-media.gettrackmedia
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetrackmedia
+        description: Camtasia Update a media item on a track
+        call: project-management-media.updatetrackmedia
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removetrackmedia
+        description: Camtasia Remove media from a track
+        call: project-management-media.removetrackmedia
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: project-management-media-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Camtasia Project Management API — Media. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: camtasia-list-media-track
+      description: Camtasia List media on a track
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-media.listtrackmedia
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-add-media-track
+      description: Camtasia Add media to a track
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: project-management-media.addmediatotrack
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-get-media-item-track
+      description: Camtasia Get a media item on a track
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-media.gettrackmedia
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-update-media-item-track
+      description: Camtasia Update a media item on a track
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: project-management-media.updatetrackmedia
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-remove-media-track
+      description: Camtasia Remove media from a track
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: project-management-media.removetrackmedia
+      outputParameters:
+      - type: object
+        mapping: $.

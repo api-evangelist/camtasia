@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Camtasia Project Management API — Tracks
+  description: 'Camtasia Project Management API — Tracks. 5 operations. Lead operation: Camtasia List project tracks. Self-contained
+    Naftiko capability covering one Camtasia business surface.'
+  tags:
+  - Camtasia
+  - Tracks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CAMTASIA_API_KEY: CAMTASIA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: project-management-tracks
+    baseUri: https://api.techsmith.com/camtasia/v1
+    description: Camtasia Project Management API — Tracks business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-tracks
+      path: /projects/{projectId}/tracks
+      operations:
+      - name: listtracks
+        method: GET
+        description: Camtasia List project tracks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtrack
+        method: POST
+        description: Camtasia Create a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-tracks-trackId
+      path: /projects/{projectId}/tracks/{trackId}
+      operations:
+      - name: gettrack
+        method: GET
+        description: Camtasia Get a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatetrack
+        method: PUT
+        description: Camtasia Update a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletetrack
+        method: DELETE
+        description: Camtasia Delete a track
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.CAMTASIA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: project-management-tracks-rest
+    port: 8080
+    description: REST adapter for Camtasia Project Management API — Tracks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/tracks
+      name: projects-projectid-tracks
+      description: REST surface for projects-projectId-tracks.
+      operations:
+      - method: GET
+        name: listtracks
+        description: Camtasia List project tracks
+        call: project-management-tracks.listtracks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtrack
+        description: Camtasia Create a track
+        call: project-management-tracks.createtrack
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/tracks/{trackid}
+      name: projects-projectid-tracks-trackid
+      description: REST surface for projects-projectId-tracks-trackId.
+      operations:
+      - method: GET
+        name: gettrack
+        description: Camtasia Get a track
+        call: project-management-tracks.gettrack
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatetrack
+        description: Camtasia Update a track
+        call: project-management-tracks.updatetrack
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetrack
+        description: Camtasia Delete a track
+        call: project-management-tracks.deletetrack
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: project-management-tracks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Camtasia Project Management API — Tracks. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: camtasia-list-project-tracks
+      description: Camtasia List project tracks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-tracks.listtracks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-create-track
+      description: Camtasia Create a track
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: project-management-tracks.createtrack
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-get-track
+      description: Camtasia Get a track
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: project-management-tracks.gettrack
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-update-track
+      description: Camtasia Update a track
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: project-management-tracks.updatetrack
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: camtasia-delete-track
+      description: Camtasia Delete a track
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: project-management-tracks.deletetrack
+      outputParameters:
+      - type: object
+        mapping: $.
