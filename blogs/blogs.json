@@ -2,12 +2,20 @@
   "repo": "camtasia",
   "feeds": [
     {
-      "source": "https://www.techsmith.com/blog/category/camtasia/",
+      "source": "https://www.techsmith.com/feed/",
       "feed_url": "https://www.techsmith.com/feed/",
-      "title": "TechSmith",
-      "saved": 37
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.techsmith.com/learn/camtasia/",
+      "feed_url": "https://www.techsmith.com/learn/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 51,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 65,
+  "fetched": "2026-06-01T23:35:02Z"
 }
