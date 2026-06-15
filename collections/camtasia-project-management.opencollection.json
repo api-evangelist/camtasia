@@ -1,0 +1,633 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Camtasia Project Management API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project status"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of the user's Camtasia projects."
+        },
+        {
+          "info": {
+            "name": "Camtasia Create a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Camtasia project, optionally based on a template."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific project."
+        },
+        {
+          "info": {
+            "name": "Camtasia Update a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata and settings for an existing project."
+        },
+        {
+          "info": {
+            "name": "Camtasia Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ]
+          },
+          "docs": "Delete a Camtasia project and its associated data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List project tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ]
+          },
+          "docs": "Retrieve all timeline tracks in a project."
+        },
+        {
+          "info": {
+            "name": "Camtasia Create a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new timeline track to the project."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific timeline track."
+        },
+        {
+          "info": {
+            "name": "Camtasia Update a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update properties of a timeline track."
+        },
+        {
+          "info": {
+            "name": "Camtasia Delete a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ]
+          },
+          "docs": "Remove a timeline track and all its media items from the project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List media on a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ]
+          },
+          "docs": "Retrieve all media items placed on a specific timeline track."
+        },
+        {
+          "info": {
+            "name": "Camtasia Add media to a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a media item on the timeline track at a specific position."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a media item on a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media/:mediaId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              },
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the media item on a track"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific media item on a timeline track."
+        },
+        {
+          "info": {
+            "name": "Camtasia Update a media item on a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media/:mediaId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              },
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the media item on a track"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update position, duration, or effects of a media item on the timeline."
+        },
+        {
+          "info": {
+            "name": "Camtasia Remove media from a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media/:mediaId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              },
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the media item on a track"
+              }
+            ]
+          },
+          "docs": "Remove a media item from the timeline track."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Productions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List productions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of production (export) jobs for a project."
+        },
+        {
+          "info": {
+            "name": "Camtasia Start a production",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new production (export) job to render the project into a finished video file with the specified settings."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get production status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions/:productionId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "productionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the production job"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and details of a specific production job."
+        },
+        {
+          "info": {
+            "name": "Camtasia Download produced video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions/:productionId/download",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "productionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the production job"
+              }
+            ]
+          },
+          "docs": "Download the finished video file from a completed production job."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/recordings",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of screen recordings available for use in projects."
+        },
+        {
+          "info": {
+            "name": "Camtasia Upload a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/recordings",
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "name",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "description",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Upload a screen recording file for use in Camtasia projects."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the recording"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific screen recording."
+        },
+        {
+          "info": {
+            "name": "Camtasia Delete a recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.techsmith.com/camtasia/v1/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the recording"
+              }
+            ]
+          },
+          "docs": "Delete a screen recording."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

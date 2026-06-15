@@ -1,0 +1,397 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Camtasia Asset Library API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/assets",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset type"
+              },
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category identifier"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of available media assets, optionally filtered by type, category, or search query."
+        },
+        {
+          "info": {
+            "name": "Camtasia Upload an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/assets",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload a new media asset to the user's personal library."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the asset"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific asset by its ID."
+        },
+        {
+          "info": {
+            "name": "Camtasia Update an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.techsmith.com/camtasia/v1/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the asset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata for an existing asset owned by the user."
+        },
+        {
+          "info": {
+            "name": "Camtasia Delete an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.techsmith.com/camtasia/v1/assets/:assetId",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the asset"
+              }
+            ]
+          },
+          "docs": "Delete an asset from the user's personal library."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get asset preview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/assets/:assetId/preview",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the asset"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Preview size"
+              }
+            ]
+          },
+          "docs": "Retrieve a thumbnail or preview image for a specific asset."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia Download an asset file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/assets/:assetId/download",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the asset"
+              }
+            ]
+          },
+          "docs": "Download the binary file for a specific asset."
+        },
+        {
+          "info": {
+            "name": "Camtasia Download a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/templates/:templateId/download",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the template"
+              }
+            ]
+          },
+          "docs": "Download a template package file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/templates",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available project templates including both built-in and user-created templates."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/templates/:templateId",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the template"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific template."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Libraries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List libraries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/libraries"
+          },
+          "docs": "Retrieve a list of asset libraries accessible to the user, including personal, shared, and TechSmith-provided libraries."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a library",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/libraries/:libraryId",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the library"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific asset library."
+        },
+        {
+          "info": {
+            "name": "Camtasia List assets in a library",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/libraries/:libraryId/assets",
+            "params": [
+              {
+                "name": "libraryId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the library"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset type"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of results per page"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of assets within a specific library."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List asset categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/categories"
+          },
+          "docs": "Retrieve the hierarchy of asset categories used to organize media assets in the library."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific asset category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
