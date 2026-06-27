@@ -5,6 +5,13 @@
       "source": "https://www.techsmith.com/feed/",
       "feed_url": "https://www.techsmith.com/feed/",
       "title": "",
+      "saved": 3,
+      "method": "feed"
+    },
+    {
+      "source": "https://www.techsmith.com/learn/feed/",
+      "feed_url": "https://www.techsmith.com/learn/feed/",
+      "title": "",
       "saved": 0,
       "method": "feed"
     },
@@ -16,6 +23,6 @@
       "method": "discovered"
     }
   ],
-  "post_count": 70,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 73,
+  "fetched": "2026-06-27T12:03:07Z"
 }
