@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/camtasia-asset-library-openapi.yml, openapi/camtasia-project-management-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 bearer token from TechSmith account authentication
+  sources:
+  - openapi/camtasia-asset-library-openapi.yml
+  - openapi/camtasia-project-management-openapi.yml
