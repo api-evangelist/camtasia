@@ -59,6 +59,8 @@ apis:
       - type: ProductPage
         url: https://www.techsmith.com/camtasia.html
 common:
+  - type: AgenticAccess
+    url: agentic-access/camtasia-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/camtasia-vulnerability-disclosure.yml
   - type: DomainSecurity
