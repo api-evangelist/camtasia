@@ -1,0 +1,310 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Asset Library Assets Projects API
+  description: API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+servers:
+- url: https://api.techsmith.com/camtasia/v1
+  description: TechSmith Camtasia API Production
+security:
+- bearerAuth: []
+tags:
+- name: Projects
+  description: Create and manage Camtasia projects
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      summary: Camtasia List projects
+      description: Retrieve a paginated list of the user's Camtasia projects.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/searchQuery'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/pageLimit'
+      - name: status
+        in: query
+        description: Filter by project status
+        schema:
+          type: string
+          enum:
+          - draft
+          - in_progress
+          - completed
+          - archived
+      - name: sort
+        in: query
+        description: Sort order for results
+        schema:
+          type: string
+          enum:
+          - name
+          - created
+          - modified
+          default: modified
+      responses:
+        '200':
+          description: Paginated list of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createProject
+      summary: Camtasia Create a project
+      description: Create a new Camtasia project, optionally based on a template.
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequest'
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Camtasia Get a project
+      description: Retrieve detailed information about a specific project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProject
+      summary: Camtasia Update a project
+      description: Update metadata and settings for an existing project.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: Camtasia Delete a project
+      description: Delete a Camtasia project and its associated data.
+      tags:
+      - Projects
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '204':
+          description: Project deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+components:
+  schemas:
+    CreateProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        templateId:
+          type: string
+          description: Template ID to base the project on
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+              default: 1920
+            height:
+              type: integer
+              description: Canvas height in pixels
+              default: 1080
+        frameRate:
+          type: number
+          description: Frame rate in FPS
+          default: 30
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the project
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        status:
+          type: string
+          enum:
+          - draft
+          - in_progress
+          - completed
+          - archived
+          description: Current project status
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+            height:
+              type: integer
+              description: Canvas height in pixels
+          description: Project canvas resolution
+        frameRate:
+          type: number
+          description: Project frame rate in frames per second
+        duration:
+          type: number
+          description: Total project duration in seconds
+        trackCount:
+          type: integer
+          description: Number of timeline tracks
+        templateId:
+          type: string
+          description: ID of the template used to create this project
+        createdAt:
+          type: string
+          format: date-time
+          description: When the project was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the project was last modified
+    ProjectListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total:
+          type: integer
+          description: Total number of projects
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated project name
+        description:
+          type: string
+          description: Updated project description
+        status:
+          type: string
+          enum:
+          - draft
+          - in_progress
+          - completed
+          - archived
+          description: Updated project status
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+            height:
+              type: integer
+              description: Canvas height in pixels
+        frameRate:
+          type: number
+          description: Updated frame rate
+  parameters:
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+externalDocs:
+  description: Camtasia Support Documentation
+  url: https://support.techsmith.com/hc/en-us/categories/camtasia-api

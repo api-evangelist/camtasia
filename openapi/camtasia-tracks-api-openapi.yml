@@ -1,0 +1,244 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Asset Library Assets Tracks API
+  description: API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+servers:
+- url: https://api.techsmith.com/camtasia/v1
+  description: TechSmith Camtasia API Production
+security:
+- bearerAuth: []
+tags:
+- name: Tracks
+  description: Manage timeline tracks within a project
+paths:
+  /projects/{projectId}/tracks:
+    get:
+      operationId: listTracks
+      summary: Camtasia List project tracks
+      description: Retrieve all timeline tracks in a project.
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      responses:
+        '200':
+          description: List of tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+    post:
+      operationId: createTrack
+      summary: Camtasia Create a track
+      description: Add a new timeline track to the project.
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTrackRequest'
+      responses:
+        '201':
+          description: Track created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Project not found
+  /projects/{projectId}/tracks/{trackId}:
+    get:
+      operationId: getTrack
+      summary: Camtasia Get a track
+      description: Retrieve details of a specific timeline track.
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      responses:
+        '200':
+          description: Track details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+    put:
+      operationId: updateTrack
+      summary: Camtasia Update a track
+      description: Update properties of a timeline track.
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTrackRequest'
+      responses:
+        '200':
+          description: Track updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+    delete:
+      operationId: deleteTrack
+      summary: Camtasia Delete a track
+      description: Remove a timeline track and all its media items from the project.
+      tags:
+      - Tracks
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      responses:
+        '204':
+          description: Track deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+components:
+  parameters:
+    trackId:
+      name: trackId
+      in: path
+      required: true
+      description: Unique identifier for the timeline track
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+  schemas:
+    UpdateTrackRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated track name
+        order:
+          type: integer
+          description: Updated track order
+        visible:
+          type: boolean
+          description: Track visibility
+        locked:
+          type: boolean
+          description: Track lock state
+        muted:
+          type: boolean
+          description: Track mute state
+        opacity:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Track opacity
+    CreateTrackRequest:
+      type: object
+      required:
+      - name
+      - type
+      properties:
+        name:
+          type: string
+          description: Track name
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - annotation
+          - cursor
+          description: Track type
+        order:
+          type: integer
+          description: Track order position
+    Track:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the track
+        name:
+          type: string
+          description: Track name
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - annotation
+          - cursor
+          description: Track type
+        order:
+          type: integer
+          description: Track order in the timeline (0 is topmost)
+        visible:
+          type: boolean
+          description: Whether the track is visible
+        locked:
+          type: boolean
+          description: Whether the track is locked for editing
+        muted:
+          type: boolean
+          description: Whether the audio on this track is muted
+        opacity:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Track opacity (for video/annotation tracks)
+        mediaCount:
+          type: integer
+          description: Number of media items on this track
+    TrackListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+externalDocs:
+  description: Camtasia Support Documentation
+  url: https://support.techsmith.com/hc/en-us/categories/camtasia-api

@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Asset Library Assets Downloads API
+  description: API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+servers:
+- url: https://api.techsmith.com/camtasia/v1
+  description: TechSmith Camtasia API Production
+security:
+- bearerAuth: []
+tags:
+- name: Downloads
+  description: Download asset files
+paths:
+  /assets/{assetId}/download:
+    get:
+      operationId: downloadAsset
+      summary: Camtasia Download an asset file
+      description: Download the binary file for a specific asset.
+      tags:
+      - Downloads
+      parameters:
+      - $ref: '#/components/parameters/assetId'
+      responses:
+        '200':
+          description: Asset file binary
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Asset not found
+  /templates/{templateId}/download:
+    get:
+      operationId: downloadTemplate
+      summary: Camtasia Download a template
+      description: Download a template package file.
+      tags:
+      - Downloads
+      parameters:
+      - $ref: '#/components/parameters/templateId'
+      responses:
+        '200':
+          description: Template package file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Template not found
+components:
+  parameters:
+    templateId:
+      name: templateId
+      in: path
+      required: true
+      description: Unique identifier for the template
+      schema:
+        type: string
+    assetId:
+      name: assetId
+      in: path
+      required: true
+      description: Unique identifier for the asset
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+externalDocs:
+  description: Camtasia Support Documentation
+  url: https://support.techsmith.com/hc/en-us/categories/camtasia-api

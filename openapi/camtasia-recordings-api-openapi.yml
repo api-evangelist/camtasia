@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Asset Library Assets Recordings API
+  description: API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+servers:
+- url: https://api.techsmith.com/camtasia/v1
+  description: TechSmith Camtasia API Production
+security:
+- bearerAuth: []
+tags:
+- name: Recordings
+  description: Manage screen recordings
+paths:
+  /recordings:
+    get:
+      operationId: listRecordings
+      summary: Camtasia List recordings
+      description: Retrieve a list of screen recordings available for use in projects.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/pageLimit'
+      responses:
+        '200':
+          description: List of recordings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordingListResponse'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: uploadRecording
+      summary: Camtasia Upload a recording
+      description: Upload a screen recording file for use in Camtasia projects.
+      tags:
+      - Recordings
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              - name
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: The recording file (.trec or video format)
+                name:
+                  type: string
+                  description: Display name for the recording
+                description:
+                  type: string
+                  description: Description of the recording
+      responses:
+        '201':
+          description: Recording uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '400':
+          description: Invalid file
+        '401':
+          description: Unauthorized
+  /recordings/{recordingId}:
+    get:
+      operationId: getRecording
+      summary: Camtasia Get a recording
+      description: Retrieve details of a specific screen recording.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/recordingId'
+      responses:
+        '200':
+          description: Recording details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+    delete:
+      operationId: deleteRecording
+      summary: Camtasia Delete a recording
+      description: Delete a screen recording.
+      tags:
+      - Recordings
+      parameters:
+      - $ref: '#/components/parameters/recordingId'
+      responses:
+        '204':
+          description: Recording deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Recording not found
+components:
+  parameters:
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: Unique identifier for the recording
+      schema:
+        type: string
+  schemas:
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the recording
+        name:
+          type: string
+          description: Recording name
+        description:
+          type: string
+          description: Recording description
+        format:
+          type: string
+          description: Recording file format (e.g., trec, mp4)
+        duration:
+          type: number
+          description: Recording duration in seconds
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Recording width in pixels
+            height:
+              type: integer
+              description: Recording height in pixels
+        fileSize:
+          type: integer
+          description: Recording file size in bytes
+        hasWebcam:
+          type: boolean
+          description: Whether the recording includes webcam footage
+        hasAudio:
+          type: boolean
+          description: Whether the recording includes audio
+        hasCursorData:
+          type: boolean
+          description: Whether the recording includes cursor tracking data
+        createdAt:
+          type: string
+          format: date-time
+          description: When the recording was created
+    RecordingListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recording'
+        total:
+          type: integer
+          description: Total number of recordings
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+externalDocs:
+  description: Camtasia Support Documentation
+  url: https://support.techsmith.com/hc/en-us/categories/camtasia-api

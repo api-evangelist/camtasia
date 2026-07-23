@@ -1,0 +1,379 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Asset Library Assets API
+  description: API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+servers:
+- url: https://api.techsmith.com/camtasia/v1
+  description: TechSmith Camtasia API Production
+security:
+- bearerAuth: []
+tags:
+- name: Assets
+  description: Browse and manage media assets
+paths:
+  /assets:
+    get:
+      operationId: listAssets
+      summary: Camtasia List assets
+      description: Retrieve a paginated list of available media assets, optionally filtered by type, category, or search query.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetType'
+      - $ref: '#/components/parameters/categoryId'
+      - $ref: '#/components/parameters/searchQuery'
+      - $ref: '#/components/parameters/pageOffset'
+      - $ref: '#/components/parameters/pageLimit'
+      - $ref: '#/components/parameters/sortBy'
+      responses:
+        '200':
+          description: Paginated list of assets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetListResponse'
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized
+    post:
+      operationId: uploadAsset
+      summary: Camtasia Upload an asset
+      description: Upload a new media asset to the user's personal library.
+      tags:
+      - Assets
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AssetUploadRequest'
+      responses:
+        '201':
+          description: Asset uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Invalid file or metadata
+        '401':
+          description: Unauthorized
+        '413':
+          description: File size exceeds limit
+  /assets/{assetId}:
+    get:
+      operationId: getAsset
+      summary: Camtasia Get an asset
+      description: Retrieve detailed information about a specific asset by its ID.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetId'
+      responses:
+        '200':
+          description: Asset details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Asset not found
+    put:
+      operationId: updateAsset
+      summary: Camtasia Update an asset
+      description: Update metadata for an existing asset owned by the user.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssetUpdateRequest'
+      responses:
+        '200':
+          description: Asset updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Asset'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Asset not found
+    delete:
+      operationId: deleteAsset
+      summary: Camtasia Delete an asset
+      description: Delete an asset from the user's personal library.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetId'
+      responses:
+        '204':
+          description: Asset deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: Asset not found
+  /assets/{assetId}/preview:
+    get:
+      operationId: getAssetPreview
+      summary: Camtasia Get asset preview
+      description: Retrieve a thumbnail or preview image for a specific asset.
+      tags:
+      - Assets
+      parameters:
+      - $ref: '#/components/parameters/assetId'
+      - name: size
+        in: query
+        description: Preview size
+        schema:
+          type: string
+          enum:
+          - small
+          - medium
+          - large
+          default: medium
+      responses:
+        '200':
+          description: Preview image
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: Unauthorized
+        '404':
+          description: Asset not found
+components:
+  parameters:
+    categoryId:
+      name: categoryId
+      in: query
+      description: Filter by category identifier
+      schema:
+        type: string
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    sortBy:
+      name: sort
+      in: query
+      description: Sort order for results
+      schema:
+        type: string
+        enum:
+        - name
+        - created
+        - modified
+        - popularity
+        default: name
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    assetType:
+      name: type
+      in: query
+      description: Filter by asset type
+      schema:
+        type: string
+        enum:
+        - video
+        - audio
+        - image
+        - animation
+        - effect
+        - transition
+        - annotation
+        - cursor
+        - theme
+    assetId:
+      name: assetId
+      in: path
+      required: true
+      description: Unique identifier for the asset
+      schema:
+        type: string
+  schemas:
+    AssetUpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated display name
+        description:
+          type: string
+          description: Updated description
+        tags:
+          type: array
+          items:
+            type: string
+          description: Updated tags
+        categoryId:
+          type: string
+          description: Updated category ID
+    AssetUploadRequest:
+      type: object
+      required:
+      - file
+      - name
+      - type
+      properties:
+        file:
+          type: string
+          format: binary
+          description: The asset file to upload
+        name:
+          type: string
+          description: Display name for the asset
+        description:
+          type: string
+          description: Description of the asset
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - image
+          - animation
+          - effect
+          - transition
+          - annotation
+          - cursor
+          - theme
+          description: Type of media asset
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags to associate with the asset
+        libraryId:
+          type: string
+          description: Target library ID (defaults to personal library)
+        categoryId:
+          type: string
+          description: Category to assign the asset to
+    AssetListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
+          description: Total number of matching assets
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the asset
+        name:
+          type: string
+          description: Display name of the asset
+        description:
+          type: string
+          description: Description of the asset
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - image
+          - animation
+          - effect
+          - transition
+          - annotation
+          - cursor
+          - theme
+          description: Type of media asset
+        format:
+          type: string
+          description: File format (e.g., mp4, mp3, png)
+        fileSize:
+          type: integer
+          description: File size in bytes
+        duration:
+          type: number
+          description: Duration in seconds (for video and audio assets)
+        width:
+          type: integer
+          description: Width in pixels (for visual assets)
+        height:
+          type: integer
+          description: Height in pixels (for visual assets)
+        thumbnailUrl:
+          type: string
+          format: uri
+          description: URL to the asset thumbnail image
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the asset file
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the asset
+        libraryId:
+          type: string
+          description: ID of the library containing the asset
+        categoryId:
+          type: string
+          description: ID of the category this asset belongs to
+        createdAt:
+          type: string
+          format: date-time
+          description: When the asset was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the asset was last modified
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+externalDocs:
+  description: Camtasia Support Documentation
+  url: https://support.techsmith.com/hc/en-us/categories/camtasia-api

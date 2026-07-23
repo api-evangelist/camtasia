@@ -1,0 +1,314 @@
+openapi: 3.1.0
+info:
+  title: Camtasia Asset Library Assets Media API
+  description: API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.
+  version: '1.0'
+  contact:
+    name: TechSmith Support
+    url: https://support.techsmith.com
+    email: support@techsmith.com
+  termsOfService: https://www.techsmith.com/terms.html
+servers:
+- url: https://api.techsmith.com/camtasia/v1
+  description: TechSmith Camtasia API Production
+security:
+- bearerAuth: []
+tags:
+- name: Media
+  description: Manage media items on project tracks
+paths:
+  /projects/{projectId}/tracks/{trackId}/media:
+    get:
+      operationId: listTrackMedia
+      summary: Camtasia List media on a track
+      description: Retrieve all media items placed on a specific timeline track.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      responses:
+        '200':
+          description: List of media items on the track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMediaListResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+    post:
+      operationId: addMediaToTrack
+      summary: Camtasia Add media to a track
+      description: Place a media item on the timeline track at a specific position.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddTrackMediaRequest'
+      responses:
+        '201':
+          description: Media added to track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMedia'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Track not found
+  /projects/{projectId}/tracks/{trackId}/media/{mediaId}:
+    get:
+      operationId: getTrackMedia
+      summary: Camtasia Get a media item on a track
+      description: Retrieve details of a specific media item on a timeline track.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      - $ref: '#/components/parameters/mediaId'
+      responses:
+        '200':
+          description: Track media details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMedia'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media item not found
+    put:
+      operationId: updateTrackMedia
+      summary: Camtasia Update a media item on a track
+      description: Update position, duration, or effects of a media item on the timeline.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      - $ref: '#/components/parameters/mediaId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTrackMediaRequest'
+      responses:
+        '200':
+          description: Track media updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackMedia'
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media item not found
+    delete:
+      operationId: removeTrackMedia
+      summary: Camtasia Remove media from a track
+      description: Remove a media item from the timeline track.
+      tags:
+      - Media
+      parameters:
+      - $ref: '#/components/parameters/projectId'
+      - $ref: '#/components/parameters/trackId'
+      - $ref: '#/components/parameters/mediaId'
+      responses:
+        '204':
+          description: Media removed from track
+        '401':
+          description: Unauthorized
+        '404':
+          description: Media item not found
+components:
+  schemas:
+    UpdateTrackMediaRequest:
+      type: object
+      properties:
+        startTime:
+          type: number
+          description: Updated start position in seconds
+        duration:
+          type: number
+          description: Updated duration in seconds
+        inPoint:
+          type: number
+          description: Updated in-point
+        outPoint:
+          type: number
+          description: Updated out-point
+        effects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Effect'
+          description: Updated effects
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+            y:
+              type: number
+        scale:
+          type: number
+          description: Updated scale factor
+        rotation:
+          type: number
+          description: Updated rotation angle
+    TrackMediaListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackMedia'
+    TrackMedia:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the media placement
+        assetId:
+          type: string
+          description: ID of the source asset
+        recordingId:
+          type: string
+          description: ID of the source recording (if applicable)
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - image
+          - annotation
+          - callout
+          - cursor
+          - transition
+          description: Media type
+        startTime:
+          type: number
+          description: Start position on the timeline in seconds
+        duration:
+          type: number
+          description: Duration on the timeline in seconds
+        inPoint:
+          type: number
+          description: In-point within the source media in seconds
+        outPoint:
+          type: number
+          description: Out-point within the source media in seconds
+        effects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Effect'
+          description: Effects applied to this media item
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+              description: Horizontal position on canvas
+            y:
+              type: number
+              description: Vertical position on canvas
+          description: Position on the canvas (for visual media)
+        scale:
+          type: number
+          description: Scale factor (1.0 = original size)
+        rotation:
+          type: number
+          description: Rotation angle in degrees
+    Effect:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - zoom
+          - pan
+          - fade_in
+          - fade_out
+          - highlight
+          - blur
+          - spotlight
+          - color_adjustment
+          - speed
+          - green_screen
+          description: Effect type
+        startTime:
+          type: number
+          description: Effect start time relative to media item
+        duration:
+          type: number
+          description: Effect duration in seconds
+        parameters:
+          type: object
+          additionalProperties: true
+          description: Effect-specific parameters
+    AddTrackMediaRequest:
+      type: object
+      properties:
+        assetId:
+          type: string
+          description: ID of the asset to add
+        recordingId:
+          type: string
+          description: ID of the recording to add
+        startTime:
+          type: number
+          description: Start position on the timeline in seconds
+          default: 0
+        duration:
+          type: number
+          description: Duration on the timeline (defaults to source duration)
+        inPoint:
+          type: number
+          description: In-point within the source media
+        outPoint:
+          type: number
+          description: Out-point within the source media
+  parameters:
+    trackId:
+      name: trackId
+      in: path
+      required: true
+      description: Unique identifier for the timeline track
+      schema:
+        type: string
+    mediaId:
+      name: mediaId
+      in: path
+      required: true
+      description: Unique identifier for the media item on a track
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 bearer token from TechSmith account authentication
+externalDocs:
+  description: Camtasia Support Documentation
+  url: https://support.techsmith.com/hc/en-us/categories/camtasia-api
