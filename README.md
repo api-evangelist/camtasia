@@ -51,11 +51,6 @@ Public oEmbed API for TechSmith Screencast (app.screencast.com), the cloud desti
 - [Postman Collection](collections/camtasia-project-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
 - [Open Collection](collections/camtasia-project-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-### Camtasia Screen Recorder SDK
-
-A developer toolkit from TechSmith that lets developers embed reliable high-quality screen, webcam, and audio recording into their own applications. The SDK exposes APIs to configure, start, stop, and automate recording workflows, and to capture cursor and system audio alongside the screen.
-
-- **Human URL:** [https://www.techsmith.com/camtasia.html](https://www.techsmith.com/camtasia.html)
 
 #### Tags
 
