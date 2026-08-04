@@ -1,0 +1,32 @@
+{
+  "provider": "camtasia",
+  "sources": [
+    "camtasia-assets-api-openapi.yml",
+    "camtasia-categories-api-openapi.yml",
+    "camtasia-downloads-api-openapi.yml",
+    "camtasia-libraries-api-openapi.yml",
+    "camtasia-media-api-openapi.yml",
+    "camtasia-productions-api-openapi.yml",
+    "camtasia-projects-api-openapi.yml",
+    "camtasia-recordings-api-openapi.yml",
+    "camtasia-templates-api-openapi.yml",
+    "camtasia-tracks-api-openapi.yml"
+  ],
+  "outputs": [
+    "camtasia-assets-api-openapi.yml",
+    "camtasia-categories-api-openapi.yml",
+    "camtasia-downloads-api-openapi.yml",
+    "camtasia-libraries-api-openapi.yml",
+    "camtasia-media-api-openapi.yml",
+    "camtasia-productions-api-openapi.yml",
+    "camtasia-projects-api-openapi.yml",
+    "camtasia-recordings-api-openapi.yml",
+    "camtasia-templates-api-openapi.yml",
+    "camtasia-tracks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
