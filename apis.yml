@@ -158,6 +158,8 @@ apis:
       - type: OpenAPI
         url: openapi/camtasia-tracks-api-openapi.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/TechSmith/screencast-public-api-docs/issues
   - type: AgenticAccess
     url: agentic-access/camtasia-agentic-access.yml
   - type: VulnerabilityDisclosure
