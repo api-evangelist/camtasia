@@ -1,0 +1,1501 @@
+{
+  "item": [
+    {
+      "id": "985bb0b3-d9f5-4d43-890f-cb19f214b29b",
+      "name": "Media",
+      "description": {
+        "content": "Manage media items on project tracks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a335bbf1-9291-4e55-a605-1d266b0abf4a",
+          "name": "Camtasia List media on a track",
+          "request": {
+            "name": "Camtasia List media on a track",
+            "description": {
+              "content": "Retrieve all media items placed on a specific timeline track.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "tracks",
+                ":trackId",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackId",
+                  "description": "(Required) Unique identifier for the timeline track"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef581cc9-fde1-46f1-a75f-68bce0ca9450",
+              "name": "List of media items on the track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"assetId\": \"string\",\n      \"recordingId\": \"string\",\n      \"type\": \"transition\",\n      \"startTime\": 6941.755967337813,\n      \"duration\": 4335.206219662554,\n      \"inPoint\": 6997.584366828942,\n      \"outPoint\": 9474.665432463442,\n      \"effects\": [\n        {\n          \"type\": \"green_screen\",\n          \"startTime\": 550.6354100660959,\n          \"duration\": 9793.39307728053,\n          \"parameters\": {\n            \"key_0\": \"string\"\n          }\n        },\n        {\n          \"type\": \"blur\",\n          \"startTime\": 5562.680622605235,\n          \"duration\": 8449.432207919492,\n          \"parameters\": {\n            \"key_0\": 7784.767325534892,\n            \"key_1\": 9216\n          }\n        }\n      ],\n      \"position\": {\n        \"x\": 6767.578356211161,\n        \"y\": 2150.0569665083103\n      },\n      \"scale\": 5141.36455266599,\n      \"rotation\": 1770.2308016955649\n    },\n    {\n      \"id\": \"string\",\n      \"assetId\": \"string\",\n      \"recordingId\": \"string\",\n      \"type\": \"audio\",\n      \"startTime\": 6917.421516323893,\n      \"duration\": 1728.3624675745302,\n      \"inPoint\": 859.0238204136535,\n      \"outPoint\": 4848.2662523982135,\n      \"effects\": [\n        {\n          \"type\": \"highlight\",\n          \"startTime\": 7505.952189647852,\n          \"duration\": 555.769175769748,\n          \"parameters\": {\n            \"key_0\": true\n          }\n        },\n        {\n          \"type\": \"zoom\",\n          \"startTime\": 2284.2808010655544,\n          \"duration\": 7543.174941934116,\n          \"parameters\": {\n            \"key_0\": true,\n            \"key_1\": true\n          }\n        }\n      ],\n      \"position\": {\n        \"x\": 1289.237226215435,\n        \"y\": 7752.431206025815\n      },\n      \"scale\": 9510.5483725162,\n      \"rotation\": 1129.88563567743\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e4ec9fe-3c91-4a10-aeda-70025f08891d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4968bb06-06d4-4743-af27-4b7957e5833a",
+              "name": "Track not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa7b89ce-32bf-487d-b951-ba7f1c493f78",
+          "name": "Camtasia Add media to a track",
+          "request": {
+            "name": "Camtasia Add media to a track",
+            "description": {
+              "content": "Place a media item on the timeline track at a specific position.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "tracks",
+                ":trackId",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackId",
+                  "description": "(Required) Unique identifier for the timeline track"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"assetId\": \"<string>\",\n  \"recordingId\": \"<string>\",\n  \"startTime\": 0,\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ccd9a99d-aa52-4f15-8d70-b56b0c34852b",
+              "name": "Media added to track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetId\": \"<string>\",\n  \"recordingId\": \"<string>\",\n  \"startTime\": 0,\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"assetId\": \"string\",\n  \"recordingId\": \"string\",\n  \"type\": \"transition\",\n  \"startTime\": 2057.204653100977,\n  \"duration\": 9515.397947274329,\n  \"inPoint\": 4040.469622864626,\n  \"outPoint\": 2340.864826515363,\n  \"effects\": [\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 3917.846025488567,\n      \"duration\": 5908.14181601461,\n      \"parameters\": {\n        \"key_0\": 9516.93298960144\n      }\n    },\n    {\n      \"type\": \"green_screen\",\n      \"startTime\": 5634.270194801515,\n      \"duration\": 2459.5317721605716,\n      \"parameters\": {\n        \"key_0\": 3237.401836904619\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": 9649.585011596793,\n    \"y\": 5299.093841847793\n  },\n  \"scale\": 2990.8985841000112,\n  \"rotation\": 352.6986729362624\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c301805-10e2-4b52-a167-2cbbb7f60c77",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetId\": \"<string>\",\n  \"recordingId\": \"<string>\",\n  \"startTime\": 0,\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "220090a0-64d6-4eb1-aeda-5f059b424aac",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetId\": \"<string>\",\n  \"recordingId\": \"<string>\",\n  \"startTime\": 0,\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ab2032a9-c375-457c-aaa5-96fc6f2916d0",
+              "name": "Track not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"assetId\": \"<string>\",\n  \"recordingId\": \"<string>\",\n  \"startTime\": 0,\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b6aaef0-db72-4122-acd2-d9dfb06fc915",
+          "name": "Camtasia Get a media item on a track",
+          "request": {
+            "name": "Camtasia Get a media item on a track",
+            "description": {
+              "content": "Retrieve details of a specific media item on a timeline track.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "tracks",
+                ":trackId",
+                "media",
+                ":mediaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackId",
+                  "description": "(Required) Unique identifier for the timeline track"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaId",
+                  "description": "(Required) Unique identifier for the media item on a track"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38986813-0f02-4b91-bcd7-a158c96659b6",
+              "name": "Track media details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"assetId\": \"string\",\n  \"recordingId\": \"string\",\n  \"type\": \"transition\",\n  \"startTime\": 2057.204653100977,\n  \"duration\": 9515.397947274329,\n  \"inPoint\": 4040.469622864626,\n  \"outPoint\": 2340.864826515363,\n  \"effects\": [\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 3917.846025488567,\n      \"duration\": 5908.14181601461,\n      \"parameters\": {\n        \"key_0\": 9516.93298960144\n      }\n    },\n    {\n      \"type\": \"green_screen\",\n      \"startTime\": 5634.270194801515,\n      \"duration\": 2459.5317721605716,\n      \"parameters\": {\n        \"key_0\": 3237.401836904619\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": 9649.585011596793,\n    \"y\": 5299.093841847793\n  },\n  \"scale\": 2990.8985841000112,\n  \"rotation\": 352.6986729362624\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2adb3583-9aec-43a7-b28b-373bfd7bbcc3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e31a8273-64bf-4c85-ae91-11d7eac3c6ae",
+              "name": "Media item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39fc98e0-7baf-47b3-b42a-def67673b888",
+          "name": "Camtasia Update a media item on a track",
+          "request": {
+            "name": "Camtasia Update a media item on a track",
+            "description": {
+              "content": "Update position, duration, or effects of a media item on the timeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "tracks",
+                ":trackId",
+                "media",
+                ":mediaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackId",
+                  "description": "(Required) Unique identifier for the timeline track"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaId",
+                  "description": "(Required) Unique identifier for the media item on a track"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"startTime\": \"<number>\",\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\",\n  \"effects\": [\n    {\n      \"type\": \"<string>\",\n      \"startTime\": \"<number>\",\n      \"duration\": \"<number>\",\n      \"parameters\": {\n        \"key_0\": true,\n        \"key_1\": 5846.241902746659,\n        \"key_2\": \"string\"\n      }\n    },\n    {\n      \"type\": \"<string>\",\n      \"startTime\": \"<number>\",\n      \"duration\": \"<number>\",\n      \"parameters\": {\n        \"key_0\": true,\n        \"key_1\": \"string\"\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": \"<number>\",\n    \"y\": \"<number>\"\n  },\n  \"scale\": \"<number>\",\n  \"rotation\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "216716cb-23fa-4011-a827-ac5d3521531a",
+              "name": "Track media updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<number>\",\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\",\n  \"effects\": [\n    {\n      \"type\": \"speed\",\n      \"startTime\": 651.8548001820191,\n      \"duration\": 2301.321779433625,\n      \"parameters\": {\n        \"key_0\": 9241,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 9124.979529780983,\n      \"duration\": 1442.6206273954956,\n      \"parameters\": {\n        \"key_0\": 6214.481550713268,\n        \"key_1\": \"string\",\n        \"key_2\": 2382.5434093521812,\n        \"key_3\": \"string\",\n        \"key_4\": \"string\"\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": \"<number>\",\n    \"y\": \"<number>\"\n  },\n  \"scale\": \"<number>\",\n  \"rotation\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"assetId\": \"string\",\n  \"recordingId\": \"string\",\n  \"type\": \"transition\",\n  \"startTime\": 2057.204653100977,\n  \"duration\": 9515.397947274329,\n  \"inPoint\": 4040.469622864626,\n  \"outPoint\": 2340.864826515363,\n  \"effects\": [\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 3917.846025488567,\n      \"duration\": 5908.14181601461,\n      \"parameters\": {\n        \"key_0\": 9516.93298960144\n      }\n    },\n    {\n      \"type\": \"green_screen\",\n      \"startTime\": 5634.270194801515,\n      \"duration\": 2459.5317721605716,\n      \"parameters\": {\n        \"key_0\": 3237.401836904619\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": 9649.585011596793,\n    \"y\": 5299.093841847793\n  },\n  \"scale\": 2990.8985841000112,\n  \"rotation\": 352.6986729362624\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1e75306-8058-47eb-83a9-e9f7c81548f9",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<number>\",\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\",\n  \"effects\": [\n    {\n      \"type\": \"speed\",\n      \"startTime\": 651.8548001820191,\n      \"duration\": 2301.321779433625,\n      \"parameters\": {\n        \"key_0\": 9241,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 9124.979529780983,\n      \"duration\": 1442.6206273954956,\n      \"parameters\": {\n        \"key_0\": 6214.481550713268,\n        \"key_1\": \"string\",\n        \"key_2\": 2382.5434093521812,\n        \"key_3\": \"string\",\n        \"key_4\": \"string\"\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": \"<number>\",\n    \"y\": \"<number>\"\n  },\n  \"scale\": \"<number>\",\n  \"rotation\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c2cff15c-46a5-4333-b215-6dac24ae1012",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<number>\",\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\",\n  \"effects\": [\n    {\n      \"type\": \"speed\",\n      \"startTime\": 651.8548001820191,\n      \"duration\": 2301.321779433625,\n      \"parameters\": {\n        \"key_0\": 9241,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 9124.979529780983,\n      \"duration\": 1442.6206273954956,\n      \"parameters\": {\n        \"key_0\": 6214.481550713268,\n        \"key_1\": \"string\",\n        \"key_2\": 2382.5434093521812,\n        \"key_3\": \"string\",\n        \"key_4\": \"string\"\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": \"<number>\",\n    \"y\": \"<number>\"\n  },\n  \"scale\": \"<number>\",\n  \"rotation\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "325752cb-d285-4537-b687-0ce6dc19106b",
+              "name": "Media item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startTime\": \"<number>\",\n  \"duration\": \"<number>\",\n  \"inPoint\": \"<number>\",\n  \"outPoint\": \"<number>\",\n  \"effects\": [\n    {\n      \"type\": \"speed\",\n      \"startTime\": 651.8548001820191,\n      \"duration\": 2301.321779433625,\n      \"parameters\": {\n        \"key_0\": 9241,\n        \"key_1\": true,\n        \"key_2\": true\n      }\n    },\n    {\n      \"type\": \"color_adjustment\",\n      \"startTime\": 9124.979529780983,\n      \"duration\": 1442.6206273954956,\n      \"parameters\": {\n        \"key_0\": 6214.481550713268,\n        \"key_1\": \"string\",\n        \"key_2\": 2382.5434093521812,\n        \"key_3\": \"string\",\n        \"key_4\": \"string\"\n      }\n    }\n  ],\n  \"position\": {\n    \"x\": \"<number>\",\n    \"y\": \"<number>\"\n  },\n  \"scale\": \"<number>\",\n  \"rotation\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d32ceff-a2a0-4ce5-b923-e17de1f636d2",
+          "name": "Camtasia Remove media from a track",
+          "request": {
+            "name": "Camtasia Remove media from a track",
+            "description": {
+              "content": "Remove a media item from the timeline track.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "projects",
+                ":projectId",
+                "tracks",
+                ":trackId",
+                "media",
+                ":mediaId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackId",
+                  "description": "(Required) Unique identifier for the timeline track"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mediaId",
+                  "description": "(Required) Unique identifier for the media item on a track"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39e59eb3-ac79-4841-bf44-714ebd015aa6",
+              "name": "Media removed from track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3e73276-3bfa-4913-82e8-c2c8639353ce",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1fadd486-18f7-428e-b74b-e8cf0e199500",
+              "name": "Media item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tracks",
+                    ":trackId",
+                    "media",
+                    ":mediaId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackId",
+                      "description": "(Required) Unique identifier for the timeline track"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mediaId",
+                      "description": "(Required) Unique identifier for the media item on a track"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.techsmith.com/camtasia/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c338c930-09f9-4aaa-a939-78cdff2f994d",
+    "name": "Camtasia Asset Library Assets Media API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for accessing and managing media assets, templates, and libraries within TechSmith Camtasia. Provides programmatic access to browse, search, download, and manage video assets, audio tracks, images, templates, themes, and other media resources used in Camtasia projects.\n\nContact Support:\n Name: TechSmith Support\n Email: support@techsmith.com",
+      "type": "text/plain"
+    }
+  }
+}

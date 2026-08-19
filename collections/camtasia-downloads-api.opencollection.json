@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Camtasia Asset Library Assets Downloads API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia Download an asset file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/assets/:assetId/download",
+            "params": [
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the asset"
+              }
+            ]
+          },
+          "docs": "Download the binary file for a specific asset."
+        },
+        {
+          "info": {
+            "name": "Camtasia Download a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/templates/:templateId/download",
+            "params": [
+              {
+                "name": "templateId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the template"
+              }
+            ]
+          },
+          "docs": "Download a template package file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

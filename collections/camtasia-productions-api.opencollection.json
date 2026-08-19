@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Camtasia Asset Library Assets Productions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Productions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List productions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of production (export) jobs for a project."
+        },
+        {
+          "info": {
+            "name": "Camtasia Start a production",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new production (export) job to render the project into a finished video file with the specified settings."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get production status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions/:productionId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "productionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the production job"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and details of a specific production job."
+        },
+        {
+          "info": {
+            "name": "Camtasia Download produced video",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/productions/:productionId/download",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "productionId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the production job"
+              }
+            ]
+          },
+          "docs": "Download the finished video file from a completed production job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

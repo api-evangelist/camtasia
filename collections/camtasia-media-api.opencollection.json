@@ -1,0 +1,175 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Camtasia Asset Library Assets Media API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List media on a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ]
+          },
+          "docs": "Retrieve all media items placed on a specific timeline track."
+        },
+        {
+          "info": {
+            "name": "Camtasia Add media to a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a media item on the timeline track at a specific position."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a media item on a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media/:mediaId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              },
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the media item on a track"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific media item on a timeline track."
+        },
+        {
+          "info": {
+            "name": "Camtasia Update a media item on a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media/:mediaId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              },
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the media item on a track"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update position, duration, or effects of a media item on the timeline."
+        },
+        {
+          "info": {
+            "name": "Camtasia Remove media from a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.techsmith.com/camtasia/v1/projects/:projectId/tracks/:trackId/media/:mediaId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the project"
+              },
+              {
+                "name": "trackId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the timeline track"
+              },
+              {
+                "name": "mediaId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the media item on a track"
+              }
+            ]
+          },
+          "docs": "Remove a media item from the timeline track."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

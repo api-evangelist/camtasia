@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Camtasia Asset Library Assets Categories API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Camtasia List asset categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/categories"
+          },
+          "docs": "Retrieve the hierarchy of asset categories used to organize media assets in the library."
+        },
+        {
+          "info": {
+            "name": "Camtasia Get a category",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.techsmith.com/camtasia/v1/categories/:categoryId",
+            "params": [
+              {
+                "name": "categoryId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by category identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific asset category."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
