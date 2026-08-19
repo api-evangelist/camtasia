@@ -28,7 +28,7 @@ access: 3rd-Party
 created: '2024-01-15'
 modified: '2026-07-25'
 position: Provider
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 description: >-
   Camtasia is a screen recording and video editing software by TechSmith that allows users to create professional
   videos, tutorials, and presentations with built-in editing tools, effects, and media assets. Camtasia itself does not
