@@ -123,6 +123,8 @@ apis:
     humanURL: https://github.com/TechSmith/screencast-public-api-docs
     baseURL: https://app.screencast.com/services/oembed
     tags:
+      - Project
+    tags_raw:
       - Projects
     properties:
       - type: OpenAPI
