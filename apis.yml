@@ -21,11 +21,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
-    - plans
-    - authentication
-  generated: '2026-07-22'
+  - plans
+  - authentication
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/camtasia.png
 type: Index
@@ -40,7 +41,7 @@ tags:
 access: 3rd-Party
 created: '2024-01-15'
 modified: '2026-07-25'
-position: Provider
+position: Producing
 specificationVersion: '0.23'
 description: >-
   Camtasia is a screen recording and video editing software by TechSmith that allows users to create professional
