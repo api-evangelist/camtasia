@@ -1,32 +1,40 @@
 {
   "provider": "camtasia",
   "sources": [
-    "camtasia-assets-api-openapi.yml",
-    "camtasia-categories-api-openapi.yml",
-    "camtasia-downloads-api-openapi.yml",
-    "camtasia-libraries-api-openapi.yml",
-    "camtasia-media-api-openapi.yml",
-    "camtasia-productions-api-openapi.yml",
-    "camtasia-projects-api-openapi.yml",
-    "camtasia-recordings-api-openapi.yml",
-    "camtasia-templates-api-openapi.yml",
-    "camtasia-tracks-api-openapi.yml"
+    "_original/camtasia-asset-library-openapi.yml",
+    "_original/camtasia-project-management-openapi.yml"
   ],
   "outputs": [
     "camtasia-assets-api-openapi.yml",
     "camtasia-categories-api-openapi.yml",
     "camtasia-downloads-api-openapi.yml",
     "camtasia-libraries-api-openapi.yml",
+    "camtasia-templates-api-openapi.yml",
     "camtasia-media-api-openapi.yml",
     "camtasia-productions-api-openapi.yml",
     "camtasia-projects-api-openapi.yml",
     "camtasia-recordings-api-openapi.yml",
-    "camtasia-templates-api-openapi.yml",
     "camtasia-tracks-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "camtasia-asset-library-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "camtasia-project-management-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "camtasia-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-downloads-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-libraries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-media-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-productions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-recordings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "camtasia-tracks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
