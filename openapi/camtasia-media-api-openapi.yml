@@ -136,13 +136,62 @@ paths:
           description: Media item not found
 components:
   schemas:
-    TrackMediaListResponse:
+    TrackMedia:
       type: object
       properties:
-        items:
+        id:
+          type: string
+          description: Unique identifier for the media placement
+        assetId:
+          type: string
+          description: ID of the source asset
+        recordingId:
+          type: string
+          description: ID of the source recording (if applicable)
+        type:
+          type: string
+          enum:
+          - video
+          - audio
+          - image
+          - annotation
+          - callout
+          - cursor
+          - transition
+          description: Media type
+        startTime:
+          type: number
+          description: Start position on the timeline in seconds
+        duration:
+          type: number
+          description: Duration on the timeline in seconds
+        inPoint:
+          type: number
+          description: In-point within the source media in seconds
+        outPoint:
+          type: number
+          description: Out-point within the source media in seconds
+        effects:
           type: array
           items:
-            $ref: '#/components/schemas/TrackMedia'
+            $ref: '#/components/schemas/Effect'
+          description: Effects applied to this media item
+        position:
+          type: object
+          properties:
+            x:
+              type: number
+              description: Horizontal position on canvas
+            y:
+              type: number
+              description: Vertical position on canvas
+          description: Position on the canvas (for visual media)
+        scale:
+          type: number
+          description: Scale factor (1.0 = original size)
+        rotation:
+          type: number
+          description: Rotation angle in degrees
     Effect:
       type: object
       properties:
@@ -225,63 +274,21 @@ components:
         outPoint:
           type: number
           description: Out-point within the source media
-    TrackMedia:
+    TrackMediaListResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier for the media placement
-        assetId:
-          type: string
-          description: ID of the source asset
-        recordingId:
-          type: string
-          description: ID of the source recording (if applicable)
-        type:
-          type: string
-          enum:
-          - video
-          - audio
-          - image
-          - annotation
-          - callout
-          - cursor
-          - transition
-          description: Media type
-        startTime:
-          type: number
-          description: Start position on the timeline in seconds
-        duration:
-          type: number
-          description: Duration on the timeline in seconds
-        inPoint:
-          type: number
-          description: In-point within the source media in seconds
-        outPoint:
-          type: number
-          description: Out-point within the source media in seconds
-        effects:
+        items:
           type: array
           items:
-            $ref: '#/components/schemas/Effect'
-          description: Effects applied to this media item
-        position:
-          type: object
-          properties:
-            x:
-              type: number
-              description: Horizontal position on canvas
-            y:
-              type: number
-              description: Vertical position on canvas
-          description: Position on the canvas (for visual media)
-        scale:
-          type: number
-          description: Scale factor (1.0 = original size)
-        rotation:
-          type: number
-          description: Rotation angle in degrees
+            $ref: '#/components/schemas/TrackMedia'
   parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
     mediaId:
       name: mediaId
       in: path
@@ -294,13 +301,6 @@ components:
       in: path
       required: true
       description: Unique identifier for the timeline track
-      schema:
-        type: string
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
       schema:
         type: string
   securitySchemes:

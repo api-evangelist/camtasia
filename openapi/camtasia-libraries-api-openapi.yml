@@ -78,61 +78,53 @@ paths:
         '404':
           description: Library not found
 components:
-  parameters:
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
-    libraryId:
-      name: libraryId
-      in: path
-      required: true
-      description: Unique identifier for the library
-      schema:
-        type: string
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
-    assetType:
-      name: type
-      in: query
-      description: Filter by asset type
-      schema:
-        type: string
-        enum:
-        - video
-        - audio
-        - image
-        - animation
-        - effect
-        - transition
-        - annotation
-        - cursor
-        - theme
   schemas:
-    LibraryListResponse:
+    Library:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the library
+        name:
+          type: string
+          description: Display name of the library
+        description:
+          type: string
+          description: Description of the library
+        type:
+          type: string
+          enum:
+          - personal
+          - shared
+          - techsmith
+          description: Library type
+        assetCount:
+          type: integer
+          description: Number of assets in the library
+        createdAt:
+          type: string
+          format: date-time
+          description: When the library was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the library was last modified
+    AssetListResponse:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Library'
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
+          description: Total number of matching assets
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
     Asset:
       type: object
       properties:
@@ -200,52 +192,60 @@ components:
           type: string
           format: date-time
           description: When the asset was last modified
-    Library:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the library
-        name:
-          type: string
-          description: Display name of the library
-        description:
-          type: string
-          description: Description of the library
-        type:
-          type: string
-          enum:
-          - personal
-          - shared
-          - techsmith
-          description: Library type
-        assetCount:
-          type: integer
-          description: Number of assets in the library
-        createdAt:
-          type: string
-          format: date-time
-          description: When the library was created
-        updatedAt:
-          type: string
-          format: date-time
-          description: When the library was last modified
-    AssetListResponse:
+    LibraryListResponse:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Asset'
-        total:
-          type: integer
-          description: Total number of matching assets
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
+            $ref: '#/components/schemas/Library'
+  parameters:
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    assetType:
+      name: type
+      in: query
+      description: Filter by asset type
+      schema:
+        type: string
+        enum:
+        - video
+        - audio
+        - image
+        - animation
+        - effect
+        - transition
+        - annotation
+        - cursor
+        - theme
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    libraryId:
+      name: libraryId
+      in: path
+      required: true
+      description: Unique identifier for the library
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

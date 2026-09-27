@@ -144,27 +144,6 @@ paths:
           description: Project not found
 components:
   parameters:
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
-      schema:
-        type: string
     pageLimit:
       name: limit
       in: query
@@ -174,6 +153,27 @@ components:
         default: 25
         minimum: 1
         maximum: 100
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
   schemas:
     UpdateProjectRequest:
       type: object
@@ -204,6 +204,22 @@ components:
         frameRate:
           type: number
           description: Updated frame rate
+    ProjectListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total:
+          type: integer
+          description: Total number of projects
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
     CreateProjectRequest:
       type: object
       required:
@@ -283,22 +299,6 @@ components:
           type: string
           format: date-time
           description: When the project was last modified
-    ProjectListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        total:
-          type: integer
-          description: Total number of projects
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
   securitySchemes:
     bearerAuth:
       type: http

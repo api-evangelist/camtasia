@@ -130,52 +130,7 @@ paths:
         '404':
           description: Track not found
 components:
-  parameters:
-    trackId:
-      name: trackId
-      in: path
-      required: true
-      description: Unique identifier for the timeline track
-      schema:
-        type: string
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
-      schema:
-        type: string
   schemas:
-    UpdateTrackRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated track name
-        order:
-          type: integer
-          description: Updated track order
-        visible:
-          type: boolean
-          description: Track visibility
-        locked:
-          type: boolean
-          description: Track lock state
-        muted:
-          type: boolean
-          description: Track mute state
-        opacity:
-          type: number
-          minimum: 0
-          maximum: 1
-          description: Track opacity
-    TrackListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
     Track:
       type: object
       properties:
@@ -213,6 +168,29 @@ components:
         mediaCount:
           type: integer
           description: Number of media items on this track
+    UpdateTrackRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated track name
+        order:
+          type: integer
+          description: Updated track order
+        visible:
+          type: boolean
+          description: Track visibility
+        locked:
+          type: boolean
+          description: Track lock state
+        muted:
+          type: boolean
+          description: Track mute state
+        opacity:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Track opacity
     CreateTrackRequest:
       type: object
       required:
@@ -233,6 +211,28 @@ components:
         order:
           type: integer
           description: Track order position
+    TrackListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+    trackId:
+      name: trackId
+      in: path
+      required: true
+      description: Unique identifier for the timeline track
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

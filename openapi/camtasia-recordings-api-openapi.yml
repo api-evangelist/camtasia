@@ -110,6 +110,15 @@ paths:
           description: Recording not found
 components:
   parameters:
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
     pageOffset:
       name: offset
       in: query
@@ -125,32 +134,7 @@ components:
       description: Unique identifier for the recording
       schema:
         type: string
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
   schemas:
-    RecordingListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recording'
-        total:
-          type: integer
-          description: Total number of recordings
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
     Recording:
       type: object
       properties:
@@ -194,6 +178,22 @@ components:
           type: string
           format: date-time
           description: When the recording was created
+    RecordingListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recording'
+        total:
+          type: integer
+          description: Total number of recordings
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
   securitySchemes:
     bearerAuth:
       type: http

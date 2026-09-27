@@ -185,6 +185,13 @@ components:
           type: string
           format: date-time
           description: When the production job was created
+    ProductionListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Production'
     CreateProductionRequest:
       type: object
       required:
@@ -228,26 +235,19 @@ components:
           type: boolean
           default: false
           description: Whether to include the TechSmith Smart Player
-    ProductionListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Production'
   parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
-      schema:
-        type: string
     productionId:
       name: productionId
       in: path
       required: true
       description: Unique identifier for the production job
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
       schema:
         type: string
   securitySchemes:
