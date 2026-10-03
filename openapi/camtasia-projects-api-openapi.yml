@@ -143,112 +143,7 @@ paths:
         '404':
           description: Project not found
 components:
-  parameters:
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
-      schema:
-        type: string
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
   schemas:
-    UpdateProjectRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated project name
-        description:
-          type: string
-          description: Updated project description
-        status:
-          type: string
-          enum:
-          - draft
-          - in_progress
-          - completed
-          - archived
-          description: Updated project status
-        resolution:
-          type: object
-          properties:
-            width:
-              type: integer
-              description: Canvas width in pixels
-            height:
-              type: integer
-              description: Canvas height in pixels
-        frameRate:
-          type: number
-          description: Updated frame rate
-    ProjectListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Project'
-        total:
-          type: integer
-          description: Total number of projects
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
-    CreateProjectRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: Project name
-        description:
-          type: string
-          description: Project description
-        templateId:
-          type: string
-          description: Template ID to base the project on
-        resolution:
-          type: object
-          properties:
-            width:
-              type: integer
-              description: Canvas width in pixels
-              default: 1920
-            height:
-              type: integer
-              description: Canvas height in pixels
-              default: 1080
-        frameRate:
-          type: number
-          description: Frame rate in FPS
-          default: 30
     Project:
       type: object
       properties:
@@ -299,6 +194,111 @@ components:
           type: string
           format: date-time
           description: When the project was last modified
+    ProjectListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        total:
+          type: integer
+          description: Total number of projects
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
+    CreateProjectRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Project name
+        description:
+          type: string
+          description: Project description
+        templateId:
+          type: string
+          description: Template ID to base the project on
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+              default: 1920
+            height:
+              type: integer
+              description: Canvas height in pixels
+              default: 1080
+        frameRate:
+          type: number
+          description: Frame rate in FPS
+          default: 30
+    UpdateProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated project name
+        description:
+          type: string
+          description: Updated project description
+        status:
+          type: string
+          enum:
+          - draft
+          - in_progress
+          - completed
+          - archived
+          description: Updated project status
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Canvas width in pixels
+            height:
+              type: integer
+              description: Canvas height in pixels
+        frameRate:
+          type: number
+          description: Updated frame rate
+  parameters:
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
   securitySchemes:
     bearerAuth:
       type: http

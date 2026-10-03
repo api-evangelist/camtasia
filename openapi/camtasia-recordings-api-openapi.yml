@@ -109,31 +109,6 @@ paths:
         '404':
           description: Recording not found
 components:
-  parameters:
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    recordingId:
-      name: recordingId
-      in: path
-      required: true
-      description: Unique identifier for the recording
-      schema:
-        type: string
   schemas:
     Recording:
       type: object
@@ -194,6 +169,31 @@ components:
         limit:
           type: integer
           description: Number of results per page
+  parameters:
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: Unique identifier for the recording
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

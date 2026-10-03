@@ -54,6 +54,13 @@ paths:
         '404':
           description: Category not found
 components:
+  parameters:
+    categoryId:
+      name: categoryId
+      in: query
+      description: Filter by category identifier
+      schema:
+        type: string
   schemas:
     Category:
       type: object
@@ -80,13 +87,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Category'
-  parameters:
-    categoryId:
-      name: categoryId
-      in: query
-      description: Filter by category identifier
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -79,6 +79,13 @@ paths:
           description: Library not found
 components:
   schemas:
+    LibraryListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Library'
     Library:
       type: object
       properties:
@@ -109,22 +116,6 @@ components:
           type: string
           format: date-time
           description: When the library was last modified
-    AssetListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-        total:
-          type: integer
-          description: Total number of matching assets
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
     Asset:
       type: object
       properties:
@@ -192,23 +183,29 @@ components:
           type: string
           format: date-time
           description: When the asset was last modified
-    LibraryListResponse:
+    AssetListResponse:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Library'
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
+          description: Total number of matching assets
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
   parameters:
-    pageLimit:
-      name: limit
+    searchQuery:
+      name: q
       in: query
-      description: Number of results per page
+      description: Search query string
       schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
+        type: string
     pageOffset:
       name: offset
       in: query
@@ -233,12 +230,15 @@ components:
         - annotation
         - cursor
         - theme
-    searchQuery:
-      name: q
+    pageLimit:
+      name: limit
       in: query
-      description: Search query string
+      description: Number of results per page
       schema:
-        type: string
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
     libraryId:
       name: libraryId
       in: path

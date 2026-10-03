@@ -136,6 +136,33 @@ paths:
           description: Media item not found
 components:
   schemas:
+    Effect:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - zoom
+          - pan
+          - fade_in
+          - fade_out
+          - highlight
+          - blur
+          - spotlight
+          - color_adjustment
+          - speed
+          - green_screen
+          description: Effect type
+        startTime:
+          type: number
+          description: Effect start time relative to media item
+        duration:
+          type: number
+          description: Effect duration in seconds
+        parameters:
+          type: object
+          additionalProperties: true
+          description: Effect-specific parameters
     TrackMedia:
       type: object
       properties:
@@ -192,33 +219,35 @@ components:
         rotation:
           type: number
           description: Rotation angle in degrees
-    Effect:
+    TrackMediaListResponse:
       type: object
       properties:
-        type:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackMedia'
+    AddTrackMediaRequest:
+      type: object
+      properties:
+        assetId:
           type: string
-          enum:
-          - zoom
-          - pan
-          - fade_in
-          - fade_out
-          - highlight
-          - blur
-          - spotlight
-          - color_adjustment
-          - speed
-          - green_screen
-          description: Effect type
+          description: ID of the asset to add
+        recordingId:
+          type: string
+          description: ID of the recording to add
         startTime:
           type: number
-          description: Effect start time relative to media item
+          description: Start position on the timeline in seconds
+          default: 0
         duration:
           type: number
-          description: Effect duration in seconds
-        parameters:
-          type: object
-          additionalProperties: true
-          description: Effect-specific parameters
+          description: Duration on the timeline (defaults to source duration)
+        inPoint:
+          type: number
+          description: In-point within the source media
+        outPoint:
+          type: number
+          description: Out-point within the source media
     UpdateTrackMediaRequest:
       type: object
       properties:
@@ -252,35 +281,6 @@ components:
         rotation:
           type: number
           description: Updated rotation angle
-    AddTrackMediaRequest:
-      type: object
-      properties:
-        assetId:
-          type: string
-          description: ID of the asset to add
-        recordingId:
-          type: string
-          description: ID of the recording to add
-        startTime:
-          type: number
-          description: Start position on the timeline in seconds
-          default: 0
-        duration:
-          type: number
-          description: Duration on the timeline (defaults to source duration)
-        inPoint:
-          type: number
-          description: In-point within the source media
-        outPoint:
-          type: number
-          description: Out-point within the source media
-    TrackMediaListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackMedia'
   parameters:
     projectId:
       name: projectId

@@ -59,6 +59,20 @@ paths:
           description: Template not found
 components:
   parameters:
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
     pageLimit:
       name: limit
       in: query
@@ -68,14 +82,6 @@ components:
         default: 25
         minimum: 1
         maximum: 100
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
     templateId:
       name: templateId
       in: path
@@ -83,29 +89,7 @@ components:
       description: Unique identifier for the template
       schema:
         type: string
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
   schemas:
-    TemplateListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Template'
-        total:
-          type: integer
-          description: Total number of templates
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
     Template:
       type: object
       properties:
@@ -146,6 +130,22 @@ components:
           type: string
           format: date-time
           description: When the template was last modified
+    TemplateListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template'
+        total:
+          type: integer
+          description: Total number of templates
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
   securitySchemes:
     bearerAuth:
       type: http

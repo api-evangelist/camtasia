@@ -161,23 +161,72 @@ paths:
         '404':
           description: Asset not found
 components:
+  parameters:
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    categoryId:
+      name: categoryId
+      in: query
+      description: Filter by category identifier
+      schema:
+        type: string
+    assetType:
+      name: type
+      in: query
+      description: Filter by asset type
+      schema:
+        type: string
+        enum:
+        - video
+        - audio
+        - image
+        - animation
+        - effect
+        - transition
+        - annotation
+        - cursor
+        - theme
+    assetId:
+      name: assetId
+      in: path
+      required: true
+      description: Unique identifier for the asset
+      schema:
+        type: string
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    sortBy:
+      name: sort
+      in: query
+      description: Sort order for results
+      schema:
+        type: string
+        enum:
+        - name
+        - created
+        - modified
+        - popularity
+        default: name
   schemas:
-    AssetListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-        total:
-          type: integer
-          description: Total number of matching assets
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
     Asset:
       type: object
       properties:
@@ -245,6 +294,22 @@ components:
           type: string
           format: date-time
           description: When the asset was last modified
+    AssetListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
+        total:
+          type: integer
+          description: Total number of matching assets
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
     AssetUpdateRequest:
       type: object
       properties:
@@ -303,71 +368,6 @@ components:
         categoryId:
           type: string
           description: Category to assign the asset to
-  parameters:
-    assetType:
-      name: type
-      in: query
-      description: Filter by asset type
-      schema:
-        type: string
-        enum:
-        - video
-        - audio
-        - image
-        - animation
-        - effect
-        - transition
-        - annotation
-        - cursor
-        - theme
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
-    assetId:
-      name: assetId
-      in: path
-      required: true
-      description: Unique identifier for the asset
-      schema:
-        type: string
-    sortBy:
-      name: sort
-      in: query
-      description: Sort order for results
-      schema:
-        type: string
-        enum:
-        - name
-        - created
-        - modified
-        - popularity
-        default: name
-    categoryId:
-      name: categoryId
-      in: query
-      description: Filter by category identifier
-      schema:
-        type: string
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
