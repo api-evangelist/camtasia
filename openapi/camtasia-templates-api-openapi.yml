@@ -59,20 +59,6 @@ paths:
           description: Template not found
 components:
   parameters:
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
     pageLimit:
       name: limit
       in: query
@@ -87,6 +73,20 @@ components:
       in: path
       required: true
       description: Unique identifier for the template
+      schema:
+        type: string
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
       schema:
         type: string
   schemas:

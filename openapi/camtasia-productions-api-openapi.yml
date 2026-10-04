@@ -110,21 +110,6 @@ paths:
         '409':
           description: Production not yet completed
 components:
-  parameters:
-    productionId:
-      name: productionId
-      in: path
-      required: true
-      description: Unique identifier for the production job
-      schema:
-        type: string
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
-      schema:
-        type: string
   schemas:
     CreateProductionRequest:
       type: object
@@ -250,6 +235,21 @@ components:
           type: string
           format: date-time
           description: When the production job was created
+  parameters:
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
+    productionId:
+      name: productionId
+      in: path
+      required: true
+      description: Unique identifier for the production job
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

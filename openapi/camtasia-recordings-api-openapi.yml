@@ -109,7 +109,48 @@ paths:
         '404':
           description: Recording not found
 components:
+  parameters:
+    recordingId:
+      name: recordingId
+      in: path
+      required: true
+      description: Unique identifier for the recording
+      schema:
+        type: string
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
+    pageOffset:
+      name: offset
+      in: query
+      description: Pagination offset
+      schema:
+        type: integer
+        default: 0
+        minimum: 0
   schemas:
+    RecordingListResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Recording'
+        total:
+          type: integer
+          description: Total number of recordings
+        offset:
+          type: integer
+          description: Current pagination offset
+        limit:
+          type: integer
+          description: Number of results per page
     Recording:
       type: object
       properties:
@@ -153,47 +194,6 @@ components:
           type: string
           format: date-time
           description: When the recording was created
-    RecordingListResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Recording'
-        total:
-          type: integer
-          description: Total number of recordings
-        offset:
-          type: integer
-          description: Current pagination offset
-        limit:
-          type: integer
-          description: Number of results per page
-  parameters:
-    pageOffset:
-      name: offset
-      in: query
-      description: Pagination offset
-      schema:
-        type: integer
-        default: 0
-        minimum: 0
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
-    recordingId:
-      name: recordingId
-      in: path
-      required: true
-      description: Unique identifier for the recording
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

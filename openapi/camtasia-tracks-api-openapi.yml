@@ -131,6 +131,29 @@ paths:
           description: Track not found
 components:
   schemas:
+    UpdateTrackRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Updated track name
+        order:
+          type: integer
+          description: Updated track order
+        visible:
+          type: boolean
+          description: Track visibility
+        locked:
+          type: boolean
+          description: Track lock state
+        muted:
+          type: boolean
+          description: Track mute state
+        opacity:
+          type: number
+          minimum: 0
+          maximum: 1
+          description: Track opacity
     Track:
       type: object
       properties:
@@ -195,29 +218,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Track'
-    UpdateTrackRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Updated track name
-        order:
-          type: integer
-          description: Updated track order
-        visible:
-          type: boolean
-          description: Track visibility
-        locked:
-          type: boolean
-          description: Track lock state
-        muted:
-          type: boolean
-          description: Track mute state
-        opacity:
-          type: number
-          minimum: 0
-          maximum: 1
-          description: Track opacity
   parameters:
     projectId:
       name: projectId
