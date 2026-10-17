@@ -111,49 +111,6 @@ paths:
           description: Production not yet completed
 components:
   schemas:
-    CreateProductionRequest:
-      type: object
-      required:
-      - format
-      properties:
-        format:
-          type: string
-          enum:
-          - mp4
-          - wmv
-          - avi
-          - gif
-          - m4a
-          description: Output file format
-        resolution:
-          type: object
-          properties:
-            width:
-              type: integer
-              description: Output width in pixels
-            height:
-              type: integer
-              description: Output height in pixels
-        frameRate:
-          type: number
-          description: Output frame rate
-        quality:
-          type: string
-          enum:
-          - low
-          - medium
-          - high
-          - custom
-          default: high
-          description: Output quality preset
-        watermark:
-          type: boolean
-          default: false
-          description: Whether to include a watermark
-        smartPlayer:
-          type: boolean
-          default: false
-          description: Whether to include the TechSmith Smart Player
     ProductionListResponse:
       type: object
       properties:
@@ -235,6 +192,49 @@ components:
           type: string
           format: date-time
           description: When the production job was created
+    CreateProductionRequest:
+      type: object
+      required:
+      - format
+      properties:
+        format:
+          type: string
+          enum:
+          - mp4
+          - wmv
+          - avi
+          - gif
+          - m4a
+          description: Output file format
+        resolution:
+          type: object
+          properties:
+            width:
+              type: integer
+              description: Output width in pixels
+            height:
+              type: integer
+              description: Output height in pixels
+        frameRate:
+          type: number
+          description: Output frame rate
+        quality:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+          - custom
+          default: high
+          description: Output quality preset
+        watermark:
+          type: boolean
+          default: false
+          description: Whether to include a watermark
+        smartPlayer:
+          type: boolean
+          default: false
+          description: Whether to include the TechSmith Smart Player
   parameters:
     projectId:
       name: projectId

@@ -130,6 +130,21 @@ paths:
         '404':
           description: Track not found
 components:
+  parameters:
+    trackId:
+      name: trackId
+      in: path
+      required: true
+      description: Unique identifier for the timeline track
+      schema:
+        type: string
+    projectId:
+      name: projectId
+      in: path
+      required: true
+      description: Unique identifier for the project
+      schema:
+        type: string
   schemas:
     UpdateTrackRequest:
       type: object
@@ -218,21 +233,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Track'
-  parameters:
-    projectId:
-      name: projectId
-      in: path
-      required: true
-      description: Unique identifier for the project
-      schema:
-        type: string
-    trackId:
-      name: trackId
-      in: path
-      required: true
-      description: Unique identifier for the timeline track
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

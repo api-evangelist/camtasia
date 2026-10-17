@@ -79,15 +79,6 @@ paths:
           description: Library not found
 components:
   parameters:
-    pageLimit:
-      name: limit
-      in: query
-      description: Number of results per page
-      schema:
-        type: integer
-        default: 25
-        minimum: 1
-        maximum: 100
     assetType:
       name: type
       in: query
@@ -104,6 +95,15 @@ components:
         - annotation
         - cursor
         - theme
+    pageLimit:
+      name: limit
+      in: query
+      description: Number of results per page
+      schema:
+        type: integer
+        default: 25
+        minimum: 1
+        maximum: 100
     pageOffset:
       name: offset
       in: query
@@ -112,12 +112,6 @@ components:
         type: integer
         default: 0
         minimum: 0
-    searchQuery:
-      name: q
-      in: query
-      description: Search query string
-      schema:
-        type: string
     libraryId:
       name: libraryId
       in: path
@@ -125,37 +119,20 @@ components:
       description: Unique identifier for the library
       schema:
         type: string
+    searchQuery:
+      name: q
+      in: query
+      description: Search query string
+      schema:
+        type: string
   schemas:
-    Library:
+    LibraryListResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier for the library
-        name:
-          type: string
-          description: Display name of the library
-        description:
-          type: string
-          description: Description of the library
-        type:
-          type: string
-          enum:
-          - personal
-          - shared
-          - techsmith
-          description: Library type
-        assetCount:
-          type: integer
-          description: Number of assets in the library
-        createdAt:
-          type: string
-          format: date-time
-          description: When the library was created
-        updatedAt:
-          type: string
-          format: date-time
-          description: When the library was last modified
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Library'
     AssetListResponse:
       type: object
       properties:
@@ -239,13 +216,36 @@ components:
           type: string
           format: date-time
           description: When the asset was last modified
-    LibraryListResponse:
+    Library:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Library'
+        id:
+          type: string
+          description: Unique identifier for the library
+        name:
+          type: string
+          description: Display name of the library
+        description:
+          type: string
+          description: Description of the library
+        type:
+          type: string
+          enum:
+          - personal
+          - shared
+          - techsmith
+          description: Library type
+        assetCount:
+          type: integer
+          description: Number of assets in the library
+        createdAt:
+          type: string
+          format: date-time
+          description: When the library was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: When the library was last modified
   securitySchemes:
     bearerAuth:
       type: http

@@ -61,18 +61,18 @@ paths:
           description: Template not found
 components:
   parameters:
-    templateId:
-      name: templateId
-      in: path
-      required: true
-      description: Unique identifier for the template
-      schema:
-        type: string
     assetId:
       name: assetId
       in: path
       required: true
       description: Unique identifier for the asset
+      schema:
+        type: string
+    templateId:
+      name: templateId
+      in: path
+      required: true
+      description: Unique identifier for the template
       schema:
         type: string
   securitySchemes:
