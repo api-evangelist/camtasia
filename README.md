@@ -1,4 +1,4 @@
-# Camtasia (camtasia)
+# Camtasia
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,85 +66,160 @@
 
 Camtasia is a screen recording and video editing software by TechSmith that allows users to create professional videos, tutorials, and presentations with built-in editing tools, effects, and media assets. Camtasia itself does not publish a public REST API, but it integrates tightly with TechSmith Screencast for sharing, and TechSmith publishes a public Screencast oEmbed API plus the Camtasia Screen Recorder SDK for embedding recording capabilities into third-party applications.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/camtasia/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/camtasia/refs/heads/main/apis.yml)
+**Areas:** Screen Recording · Video Editing · Tutorial Creation · E-Learning · Screencast · oEmbed · SDK
 
-## Scope
+## Camtasia on APIs.io
 
-- **Type:** Index
-- **Position:** Provider
-- **Access:** 3rd-Party
+Everything profiled for Camtasia is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/camtasia/](https://apis.io/providers/camtasia/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Screen Recording
-- Video Editing
-- Tutorial Creation
-- E-Learning
-- Screencast
-- oEmbed
-- SDK
+- [TechSmith Screencast oEmbed API](https://apis.io/apis/camtasia/screencast-oembed-api/) — Public oEmbed API for TechSmith Screencast (app.screencast.com), the cloud destination where Camtasia videos and images are shared. The oEmbed endpoint…
+- [Camtasia Assets API](https://apis.io/apis/camtasia/camtasia-assets-api/) — Browse and manage media assets
+- [Camtasia Categories API](https://apis.io/apis/camtasia/camtasia-categories-api/) — Browse asset categories
+- [Camtasia Downloads API](https://apis.io/apis/camtasia/camtasia-downloads-api/) — Download asset files
+- [Camtasia Libraries API](https://apis.io/apis/camtasia/camtasia-libraries-api/) — Manage asset libraries and collections
+- [Camtasia Media API](https://apis.io/apis/camtasia/camtasia-media-api/) — Manage media items on project tracks
+- [Camtasia Productions API](https://apis.io/apis/camtasia/camtasia-productions-api/) — Produce and export finished videos
+- [Camtasia Projects API](https://apis.io/apis/camtasia/camtasia-projects-api/) — Create and manage Camtasia projects
+- [Camtasia Recordings API](https://apis.io/apis/camtasia/camtasia-recordings-api/) — Manage screen recordings
+- [Camtasia Templates API](https://apis.io/apis/camtasia/camtasia-templates-api/) — Manage video project templates
+- [Camtasia Tracks API](https://apis.io/apis/camtasia/camtasia-tracks-api/) — Manage timeline tracks within a project
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### TechSmith Screencast oEmbed API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Public oEmbed API for TechSmith Screencast (app.screencast.com), the cloud destination where Camtasia videos and images are shared. The oEmbed endpoint returns embed HTML, thumbnail, and metadata for a given Screencast content URL, letting content platforms and CMSes render Screencast shares inline the same way they render YouTube or Vimeo. Documentation is maintained in a public GitHub repository.
+- [Camtasia Agentic Access](https://apis.io/agentic-access/camtasia/camtasia-agentic-access/)
 
-- **Human URL:** [https://github.com/TechSmith/screencast-public-api-docs](https://github.com/TechSmith/screencast-public-api-docs)
-- **Base URL:** `https://app.screencast.com/services/oembed`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- oEmbed
-- Screencast
-- Embedding
-- Video
+- [Camtasia Asset](https://apis.io/schemas/camtasia/camtasia-asset/)
+- [Camtasia Project](https://apis.io/schemas/camtasia/camtasia-project/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://github.com/TechSmith/screencast-public-api-docs/blob/main/sections/oembed.md)
-- [Repository](https://github.com/TechSmith/screencast-public-api-docs)
-- [JSON-LD](json-ld/camtasia-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Postman Collection](collections/camtasia-asset-library.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/camtasia-asset-library.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/camtasia-project-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/camtasia-project-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
+- [Camtasia Context](https://apis.io/jsonld/camtasia/camtasia-context/)
 
-#### Tags
+#### Collections (12)
 
-- SDK
-- Screen Recording
-- Embedded
+Postman and Open Collection request collections.
 
-#### Properties
+- [Camtasia Asset Library API](https://apis.io/collections/camtasia/open-camtasia-asset-library/)
+- [Camtasia Asset Library Assets API](https://apis.io/collections/camtasia/open-camtasia-assets-api/)
+- [Camtasia Asset Library Assets Categories API](https://apis.io/collections/camtasia/open-camtasia-categories-api/)
+- [Camtasia Asset Library Assets Downloads API](https://apis.io/collections/camtasia/open-camtasia-downloads-api/)
+- [Camtasia Asset Library Assets Libraries API](https://apis.io/collections/camtasia/open-camtasia-libraries-api/)
+- [Camtasia Asset Library Assets Media API](https://apis.io/collections/camtasia/open-camtasia-media-api/)
+- [Camtasia Asset Library Assets Productions API](https://apis.io/collections/camtasia/open-camtasia-productions-api/)
+- [Camtasia Project Management API](https://apis.io/collections/camtasia/open-camtasia-project-management/)
+- [Camtasia Asset Library Assets Projects API](https://apis.io/collections/camtasia/open-camtasia-projects-api/)
+- [Camtasia Asset Library Assets Recordings API](https://apis.io/collections/camtasia/open-camtasia-recordings-api/)
+- [Camtasia Asset Library Assets Templates API](https://apis.io/collections/camtasia/open-camtasia-templates-api/)
+- [Camtasia Asset Library Assets Tracks API](https://apis.io/collections/camtasia/open-camtasia-tracks-api/)
 
-- [Product Page](https://www.techsmith.com/camtasia.html)
-- [Postman Collection](collections/camtasia-asset-library.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/camtasia-asset-library.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/camtasia-project-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/camtasia-project-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (1)
 
-## Common Properties
+Spectral rulesets for the provider's contracts.
 
-- [LinkedIn](https://www.linkedin.com/company/techsmith-corporation)
+- [Camtasia — jsonschema rules](https://apis.io/rules/camtasia/camtasia-jsonschema-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Camtasia Authentication](https://apis.io/security/camtasia/camtasia-authentication/)
+- [Camtasia Domain Security](https://apis.io/security/camtasia/camtasia-domain-security/)
+- [Camtasia Vulnerability Disclosure](https://apis.io/security/camtasia/camtasia-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Camtasia Plans Pricing](https://apis.io/plans/camtasia/camtasia-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Camtasia Rate Limits](https://apis.io/rate-limits/camtasia/camtasia-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Camtasia Finops](https://apis.io/finops/camtasia/camtasia-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.techsmith.com/camtasia.html)
-- [Screencast](https://www.techsmith.com/screencast/)
-- [Getting Started](https://www.techsmith.com/learn/camtasia/)
-- [Blog](https://www.techsmith.com/blog/category/camtasia/)
+- [Getting started](https://www.techsmith.com/learn/camtasia/)
 - [Support](https://support.techsmith.com)
-- [Public A P I Repository](https://github.com/TechSmith/screencast-public-api-docs)
-- [Terms of Service](https://www.techsmith.com/terms.html)
-- [Privacy Policy](https://www.techsmith.com/privacy.html)
-- [JSON-LD](json-ld/camtasia-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Integrations](https://www.techsmith.com/integrations/)
+- [Blog](https://www.techsmith.com/blog/category/camtasia/)
+- [Terms of service](https://www.techsmith.com/terms.html)
+- [Privacy policy](https://www.techsmith.com/privacy.html)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 38.0** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 58.4 |
+| Contract governance | 9.8 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 39.3 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/camtasia/](https://apis.io/providers/camtasia/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Camtasia: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/camtasia/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
